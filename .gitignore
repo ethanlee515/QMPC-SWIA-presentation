@@ -1,3 +1,14 @@
+# derived files from pdflatex
+*.aux
+*.log
+*.pdf
+*.bbl
+*.blg
+*.nav
+*.out
+*.snm
+*.toc
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
