@@ -1,9 +1,3 @@
-*** Check other talks ***
-
-Goals:
-1. let audience learn things
-2. sell our results
-
 re-check our paper for motivations to SWIA
 Check other presentations for SWIA?
 
@@ -24,8 +18,6 @@ Goal is to leave an impression so they know our paper is there
 
 First half of the talk shouldn't be technical at all
 Over 20 min is fine
-
-If Listener in non-crypto people, still hope they can follow half of it
 
 Each argument has assumption + conclusion
 Make sure audience knows those before argument actually happens
