@@ -55,7 +55,12 @@ High-level of qubit-sending problem.
 
 ## Main theorem
 
-Consider constant round presentation?
+There exists a protocol for computing any multiparty quantum circuit with SWIA.
+* Assumptions: Classical HE and MPC
+* Need to mention round efficient too.
+
+TODO look at how others state their theorems...
+Constant round looks good but not sure if format fits
 
 ## Prior works
 
@@ -86,7 +91,13 @@ Putting it after seems to flow better?
 
 ## Extending solution to MPQC protocol
 
+Modularize SA/AR first? Or handwave those and go straight to protocol?
+
 TODO think about how to make this illustration possible to follow
+
+Want to mention invalid QECC attack, but hard to define the context...
+
+Maybe just bring it up in the right step of our protocol?
 
 ## Caveats
 
@@ -101,11 +112,14 @@ TODO
 
 # Strategy (?)
 
-go back to our paper?
-
 Goals:
 1. let audience learn things
 2. sell our results
+
+## On following our intro's flows
+
+Do we have time for IDPD?
+How to transition into invalid-QECC attack?
 
 ## On illustrations
 
