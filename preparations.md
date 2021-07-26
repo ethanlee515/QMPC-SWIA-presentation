@@ -48,7 +48,7 @@ This probably should come after quantum?
 
 ## Challenges
 
-_* Remember to clearly define qubit-sending subproblem *_
+***Remember to clearly define qubit-sending subproblem***
 
 ## Main theorem
 
