@@ -48,11 +48,23 @@ This probably should come after quantum?
 
 ## Challenges
 
-***Remember to clearly define qubit-sending subproblem***
+High-level of qubit-sending problem.
+* Classical MPCs have satisfied SWIA before the property was even formulated.
+* Not true for quantum - why?
+* Take an arbitrary MPQC protocol and see that a protocol message can be lost.
 
 ## Main theorem
 
 Consider constant round presentation?
+
+## Prior works
+
+Some people put this before main theorem, and some after.
+Putting it after seems to flow better?
+
+* MPQC DGJ+
+* 2PQC constant round?
+* VQFHE - special case of 2PQC. Our computation reduces to it.
 
 # Technical
 
@@ -67,17 +79,25 @@ Consider constant round presentation?
 * Clearly define it
 * Solve it
 
+## Recap - VQFHE and quantum authentications
+
+* Mention that authentication implies encryption under the quantum setting.
+* Maybe abuse of notation and "collapse" the two ideas?
+
 ## Extending solution to MPQC protocol
 
 TODO think about how to make this illustration possible to follow
 
+## Caveats
+
+1. evaluation key...? This is nontrivial.
+2. we need an extra "check-integrity" operation.
+
+Just encourage the audience to read our paper...
+
 # Concluding slide
 
-# Wish list
-
-* Consider modularizing technical components the way our paper does.
-* Mention that T state preparation is nontrivial
-* Mention constant-round result
+TODO
 
 # Strategy (?)
 
