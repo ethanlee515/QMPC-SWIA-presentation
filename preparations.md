@@ -62,6 +62,9 @@ There exists a protocol for computing any multiparty quantum circuit with SWIA.
 TODO look at how others state their theorems...
 Constant round looks good but not sure if format fits
 
+Constant round = interesting byproduct.
+No need to do detailed comparison
+
 ## Prior works
 
 Some people put this before main theorem, and some after.
@@ -109,6 +112,10 @@ Just encourage the audience to read our paper...
 # Concluding slide
 
 TODO
+
+# Open problems...?
+
+TODO Copy from paper page 3-4
 
 # Strategy (?)
 
