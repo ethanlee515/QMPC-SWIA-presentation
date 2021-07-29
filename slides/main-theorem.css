@@ -1,7 +1,7 @@
 #main-theorem {
 	position: fixed;
 	width: 50%;
-	height: 30%;
+	height: 20%;
 	top: 35%;
 	left: 25%;
 	background-color: #6A6;
@@ -12,7 +12,7 @@
 	width: 30%;
 	height: 15%;
 	right: 20%;
-	bottom: 15%;
+	bottom: 25%;
 	background-color: #66A;
 }
 
@@ -20,6 +20,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	border-radius: 25px;
 }
 
 #arrow {
@@ -28,11 +29,13 @@
 	height: 0;
 
 	left: 55%;
-	bottom: 30%;
+	bottom: 40%;
 
 	border-style: solid;
 	border-width: 0 40px 20px 40px;
 	border-color: #66A transparent;
+}
 
-
+.statement {
+	margin: 30px;
 }
