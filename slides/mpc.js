@@ -133,6 +133,11 @@ function nextSlide() {
 				"height": abortMessageHeight
 			});
 			$(".canvas-container").append(abortMessage);
+			break;
+		}
+		case 8: {
+			location.href = "swia.html";
+			break;
 		}
 	}
 }

@@ -1,3 +1,5 @@
 function nextSlide() {
-	//TODO Go to next page when it's time
+	if(currentSlide == 2) {
+		location.href = "qubit-sending.html";
+	}
 }

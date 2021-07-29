@@ -96,5 +96,9 @@ function nextSlide() {
 			$('.canvas-container').append(abortMessage);
 			break;
 		}
+		case 6: {
+			location.href = "main-theorem.html";
+			break;
+		}
 	}
 }
