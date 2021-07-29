@@ -43,7 +43,7 @@ function make4parties(container) {
 		ctx.arc(partyX, partyY, partyRadius, 0, 2 * Math.PI);
 		ctx.stroke();
 
-		let svg = $(MathJax.tex2svg(`\\huge{P_${partyID}}`)).find('svg');
+		let svg = $(MathJax.tex2svg(`P_${partyID}`)).find('svg');
 		container.append(svg);
 		svg.css({
 			position: 'absolute',

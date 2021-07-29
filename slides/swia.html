@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -23,35 +24,28 @@
 		<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 		<script src="./q-pres.js"></script>
-		<script src="./mpc.js"></script>
+		<script src="./swia.js"></script>
 	</head>
 	<body>
 		<section>
-		<h2> Multiparty Quantum Computations </h2>
-		<h3> Goal: </h3>
-		Compute $f(|x_1\rangle, \ldots, |x_n\rangle)
-			=(|y_1\rangle, \ldots, |y_n\rangle)$.
+			<h2> Security with Identifiable Abort </h2>
 		</section>
-
+		<section class="slide-content" data-visible-from="1">
+			<h3> Simple under classical setting </h3>
+			<p>Formulated by CRYPTO2014, achieved by GMW1987.</p>
+		</section>
+		<section class="slide-content" data-visible-from="2">
+			<h3> Challenging under quantum setting </h3>
+			<p>Not satisfied by known constructions (DNS, DGJ+).</p>
+		</section>
 		<section class="slide-content" data-visible-from="3">
-			<h3> Security: </h3>
-			<p>Malicious $P_i$ learns only $y_i$.</p>
+			<p>Suppose protocol message is dropped...</p>
 		</section>
-
 		<section class="slide-content" data-visible-from="4">
-			<h3> What if the protocol aborts? </h3>
+			<p>No cloning $\Rightarrow$ Possibly no way to recover!</p>
 		</section>
-
 		<section class="slide-content" data-visible-from="5">
-			<p>Unavoidable with dishonest majority.</p>
-		</section>
-
-		<section class="slide-content" data-visible-from="6">
-			<p>Susceptible to <i>Denial of Service</i> attacks!</p>
-		</section>
-
-		<section class="slide-content" data-visible-from="7">
-			<p>Quantum inputs are forever lost.</p>
+			<p>Not enough information to identify corrupted party.</p>
 		</section>
 	</body>
 </html>

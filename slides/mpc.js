@@ -10,7 +10,7 @@ function draw_party_input(container, partyID) {
 	let offsetY = -height / 10;
 	offsetX *= partyID % 2 ? -1 : 1;
 
-	let svg = $(MathJax.tex2svg(`\\large{|x_${partyID}\\rangle}`)).find('svg');
+	let svg = $(MathJax.tex2svg(`|x_${partyID}\\rangle`)).find('svg');
 	container.append(svg);
 	svg.css({
 		position: 'absolute',
@@ -38,7 +38,7 @@ function draw_party_output(container, partyID) {
 	let offsetY = height / 10;
 	offsetX *= partyID % 2 ? -1 : 1;
 
-	let svg = $(MathJax.tex2svg(`\\large{|y_${partyID}\\rangle}`)).find('svg');
+	let svg = $(MathJax.tex2svg(`|y_${partyID}\\rangle`)).find('svg');
 	container.append(svg);
 	svg.css({
 		position: 'absolute',

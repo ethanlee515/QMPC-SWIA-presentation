@@ -1,17 +1,19 @@
 body {
 	background-color: #aa8;
 	margin: 50px;
-}
-
-section {
 	font-size: 30px;
 }
 
 h2 {
 	font-size: 50px;
+	margin: 45px 0;
 }
 
 h3 {
 	font-size: 40px;
+	margin: 35px 0;
 }
 
+p {
+	margin: 25px 0;
+}
