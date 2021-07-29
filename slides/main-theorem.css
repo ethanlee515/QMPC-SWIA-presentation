@@ -1,0 +1,38 @@
+#main-theorem {
+	position: fixed;
+	width: 50%;
+	height: 30%;
+	top: 35%;
+	left: 25%;
+	background-color: #6A6;
+}
+
+#round-efficient {
+	position: fixed;
+	width: 30%;
+	height: 15%;
+	right: 20%;
+	bottom: 15%;
+	background-color: #66A;
+}
+
+.result {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#arrow {
+	position: fixed;
+	width: 0;
+	height: 0;
+
+	left: 55%;
+	bottom: 30%;
+
+	border-style: solid;
+	border-width: 0 40px 20px 40px;
+	border-color: #66A transparent;
+
+
+}
