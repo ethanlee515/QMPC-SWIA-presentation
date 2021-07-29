@@ -35,16 +35,21 @@ function make4parties(container) {
 	ctx.fill();
 
 	function drawParty(partyID) {
+		if(partyID < 1 || partyID > 4)
+			throw "Invalid party ID";
 		let [partyX, partyY] = getPartyLocation(canvas, partyID);
 		let partyRadius = height / 10;
 		ctx.beginPath();
 		ctx.arc(partyX, partyY, partyRadius, 0, 2 * Math.PI);
 		ctx.stroke();
 
-		let svg = $(MathJax.tex2svg(`\\huge{P_${partyID}}`, {
-			scale: 3
-		})).find('svg');
+		let svg = $(MathJax.tex2svg(`\\huge{P_${partyID}}`)).find('svg');
 		container.append(svg);
+		svg.css({
+			position: 'absolute',
+			left: partyX - svg.width() / 2,
+			top: partyY - svg.height() / 2
+		});
 		svg.on("load", () => {
 			svg.css({
 				position: 'absolute',
@@ -59,12 +64,19 @@ function make4parties(container) {
 }
 
 function drawLineBetweenParties(pi, pj, canvas, isArrow) {
+	if(pi < 1 || pi > 4 || pj < 1 || pj > 4)
+		throw "Invalid party ID";
 	let [piLocX, piLocY] = getPartyLocation(canvas, pi);
 	let [pjLocX, pjLocY] = getPartyLocation(canvas, pj);
-	let startX = (5 * piLocX + pjLocX) / 6;
-	let startY = (5 * piLocY + pjLocY) / 6;
-	let endX = (piLocX + 5 * pjLocX) / 6;
-	let endY = (piLocY + 5 * pjLocY) / 6;
+
+	// weights for interpolation
+	let weightP = pi % 2 == pj % 2 ? 2 / 3 : 5 / 6;
+	let weightQ = 1 - weightP;
+
+	let startX = weightP * piLocX + weightQ * pjLocX;
+	let startY = weightP * piLocY + weightQ * pjLocY;
+	let endX = weightQ * piLocX + weightP * pjLocX;
+	let endY = weightQ * piLocY + weightP * pjLocY;
 	let ctx = canvas[0].getContext("2d");
 	ctx.beginPath();
 	ctx.moveTo(startX, startY);

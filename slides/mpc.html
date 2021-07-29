@@ -26,11 +26,24 @@
 		<script src="./mpc.js"></script>
 	</head>
 	<body>
-		<h1> Goal: </h1>
-		Compute $U|x_1\rangle\ldots|x_n\rangle=|y_1\rangle\ldots|y_n\rangle$.
-		<div class="slide-content" data-visible-from="1">
-			<h2> Security: </h2>
-			Malicious $P_i$ learns only $y_i$
-		</div>
+		<section>
+		<h2> Multiparty Quantum Computations </h2>
+		<h3> Goal: </h3>
+		Compute $f(|x_1\rangle, \ldots, |x_n\rangle)
+			=(|y_1\rangle, \ldots, |y_n\rangle)$.
+		</section>
+		<section class="slide-content" data-visible-from="3">
+			<h3> Security: </h3>
+			Malicious $P_i$ learns only $y_i$.
+		</section>
+		<section class="slide-content" data-visible-from="4">
+			<h3> What if the protocol aborts? </h3>
+			<p class="slide-content" data-visible-from="5">
+			Unavoidable with dishonest majority.
+			</p>
+			<p class="slide-content" data-visible-from="6">
+			Susceptible to <i>Denial of Service</i> attacks!
+			</p>
+		</section>
 	</body>
 </html>
