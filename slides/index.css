@@ -1,0 +1,28 @@
+.paper-info {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+#authors-holder {
+	flex-direction: row;
+
+}
+
+#affil-logos {
+	flex-direction: row;
+}
+
+#affil-logos img {
+	width: 200px;
+	margin: 30px;
+}
+
+#author-holder {
+	margin: 10px;
+}
+
+sup {
+	font-size: smaller;
+}
