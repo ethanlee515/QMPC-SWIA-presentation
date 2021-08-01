@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>MPQC SWIA Presentation</title>
+		<link rel="stylesheet" href="./q-pres.css">
+		<link rel="stylesheet" href="./strategy.css">
+		<script>
+			function mathjax_ready_override() {
+				main();
+				return MathJax.startup.defaultPageReady();
+			}
+			MathJax = {
+				tex: {
+					inlineMath: [['$', '$'], ['\\(', '\\)']]
+				},
+				svg: {
+					fontCache: 'global'
+				},
+				startup: {
+					pageReady: mathjax_ready_override
+				}
+			};
+		</script>
+		<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<script src="./q-pres.js"></script>
+		<script src="./strategy.js"></script>
+	</head>
+	<body>
+		<section class="slide-title">
+			Building MPQC
+		</section>
+
+		<section class="slide-item">
+			Typical MPQC paradigm:
+		</section>
+
+		<section class="canvas-holder">
+			<canvas width="1600" height="100" id="typical-mpc">
+			</canvas>
+		</section>
+
+		<section class="slide-item">
+			No-go construction: Commit then ECC
+		</section>
+		<section class="canvas-holder">
+			<canvas width="1600" height="120" id="enc-then-qecc">
+			</canvas>
+		</section>
+
+		<section class="slide-item">
+			No-go construction: Homomorphic ECC
+		</section>
+		<section class="canvas-holder">
+			<canvas width="1600" height="120" id="homomorphic-qecc">
+			</canvas>
+		</section>
+
+		<section class="slide-item">
+			Our strategy
+		</section>
+		<section class="canvas-holder">
+			<canvas width="1600" height="120" id="our-strategy">
+			</canvas>
+		</section>
+	</body>
+</html>
