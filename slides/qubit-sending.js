@@ -112,7 +112,9 @@ function eraseLineBetweenParties(canvas, pi, pj) {
 	ctx.moveTo(startX, startY);
 	ctx.lineTo(endX, endY);
 	ctx.strokeStyle = "#FFF";
-	ctx.lineWidth = 45;
+	/* Jank central... */
+	/* This can't be the right way to erase an X */
+	ctx.lineWidth = 60;
 	ctx.stroke();
 	ctx.lineWidth = 2;
 	ctx.strokeStyle = "#000";
@@ -197,6 +199,7 @@ function nextSlide() {
 			}
 			break;
 		}
+		/* Path 1 */
 		case 6: {
 			//Green
 			let canvas = container.find("canvas");
@@ -214,10 +217,119 @@ function nextSlide() {
 			eraseLineBetweenParties(canvas, 1, 2);
 			break;
 		}
+		/* Path 2 */
+		case 9: {
+			//Green
+			let canvas = container.find("canvas");
+			drawLineBetweenParties(1, 3, canvas, false, "#0C0");
+			drawLineBetweenParties(3, 2, canvas, false, "#0C0");
+			break;
+		}
+		case 10: {
+			let canvas = container.find("canvas");
+			//Whether "canvas" is first or last argument is really inconsistent right now...
+			drawX(canvas, 3, 2);
+			break;
+		}
+		case 11: {
+			let canvas = container.find("canvas");
+			eraseLineBetweenParties(canvas, 3, 2);
+			drawLineBetweenParties(1, 4, canvas, false, "#000");
+			drawLineBetweenParties(1, 3, canvas, false, "#000");
+			break;
+		}
+		/* Path 3 */
+		case 12: {
+			let canvas = container.find("canvas");
+			drawLineBetweenParties(1, 4, canvas, false, "#0C0");
+			drawLineBetweenParties(4, 2, canvas, false, "#0C0");
+			break;
+		}
+		case 13: {
+			let canvas = container.find("canvas");
+			drawX(canvas, 3, 2);
+			break;
+		}
+		case 14: {
+			let canvas = container.find("canvas");
+			eraseLineBetweenParties(canvas, 1, 4);
+			drawLineBetweenParties(4, 2, canvas, false, "#000");
+			break;
+		}
+		/* Path 4 */
+		case 15: {
+			let canvas = container.find("canvas");
+			drawLineBetweenParties(1, 3, canvas, false, "#0C0");
+			drawLineBetweenParties(3, 4, canvas, false, "#0C0");
+			drawLineBetweenParties(4, 2, canvas, false, "#0C0");
+			break;
+		}
+		case 16: {
+			let canvas = container.find("canvas");
+			drawX(canvas, 3, 4);
+			break;
+		}
+		case 17: {
+			let canvas = container.find("canvas");
+			eraseLineBetweenParties(canvas, 3, 4);
+			drawLineBetweenParties(1, 3, canvas, false, "#000");
+			drawLineBetweenParties(4, 2, canvas, false, "#000");
+			break;
+		}
+		/* SWIA */
+		case 18: {
+			let canvas = container.find("canvas");
+			let canvasWidth = canvas.width();
+			let canvasHeight = canvas.height();
 
-			
+			let abortText = $("<p>ABORT</p>");
+			abortText.css({
+				"margin": "5px 0",
+				"font-size": "xx-large",
+				"display": "flex",
+				"justify-content": "center"
+			});
+			let idText = $(`<p>
+				<span>Players 2 and 4</span>
+				<span>are malicious!</span>
+				</p>`);
+			idText.css({
+				"margin": "5px 0",
+				"font-size": "x-large",
+				"display": "flex",
+				"flex-direction": "column",
+				"justify-content": "center",
+				"align-items": "center"
+			});
 
+			let abortMessage = $("<div></div>");
+			abortMessage.append(abortText);
+			abortMessage.append(idText);
 
+			let abortMessageWidth = 2 * canvasWidth / 5;
+			let abortMessageHeight = canvasHeight / 4;
+			abortMessage.css({
+				"display": "flex",
+				"align-items": "center",
+				"justify-content": "center",
+				"color": "#a00",
+				"flex-direction": "column",
+
+				"border-radius": 10,
+				"background-color": "#faa",
+				"border-style": "solid",
+				"border-width": "thick",
+				"border-color": "#f55",
+				"position": "absolute",
+				"left": canvasWidth / 2 - abortMessageWidth / 2,
+				"top": canvasHeight / 2 - abortMessageHeight / 2,
+				"width": abortMessageWidth,
+				"height": abortMessageHeight
+			});
+			container.append(abortMessage);
+			MathJax.typeset();
+			break;
+		}
 	}
 
 
