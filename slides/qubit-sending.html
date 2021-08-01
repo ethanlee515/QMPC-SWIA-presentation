@@ -26,22 +26,38 @@
 		<script src="./qubit-sending.js"></script>
 	</head>
 	<body>
-		<section>
-		<h2> Qubit-Sending Problem </h2>
-		<p>Subproblem of SWIA MPQC.</p>
+		<section class="slide-title">
+			Qubit Sending Problem
 		</section>
 
-		<section class="slide-content" data-visible-from="1">
-		<h3> Goal: </h3>
-		<p>$P_1$ wants to send a qubit $|x\rangle$ to $P_2$.</p>
+		<section class="slide-item">
+			<b>Goal: </b> $P_1$ wants to send a qubit to $P_2$.
 		</section>
 
-		<section class="slide-content" data-visible-from="2">
-		Malicious $P_i$'s can only:
-		<ol>
-			<li> Drop outgoing messages </li>
-			<li> Drop incoming messages </li>
-		</ol>
+		<section class="slide-content slide-item" data-visible-from="1">
+		Malicious $P_i$'s can:
 		</section>
+		<section class="slide-content slide-sub-item" data-visible-from="1">
+			Drop outgoing messages
+		</section>
+		<section class="slide-content slide-sub-item" data-visible-from="2">
+			Drop incoming messages
+		</section>
+
+		<hr class="slide-content" data-visible-from="3">
+
+		<section class="slide-content" data-visible-from="3">
+			<b>Our solution: <i>Routing</i></b>
+		</section>
+
+		<section class="slide-content slide-sub-item" data-visible-from="4">
+			Packets: Error-correcting code
+		</section>
+
+		<section class="slide-content slide-sub-item" data-visible-from="5">
+			Network: Parties
+		</section>
+
+
 	</body>
 </html>
