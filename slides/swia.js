@@ -86,17 +86,17 @@ function nextSlide() {
 			container.append(abortMessage);
 			break;
 		}
-		case 3: {
+		case 4: {
 			$('.canvas-container').remove();
 			illustrateLostMessage(canvasWidth, canvasHeight);
 			break;
 		}
-		case 5: {
+		case 6: {
 			let abortMessage = makeAbortMessage("Who is malicious...?");
 			$('.canvas-container').append(abortMessage);
 			break;
 		}
-		case 6: {
+		case 7: {
 			location.href = "main-theorem.html";
 			break;
 		}
