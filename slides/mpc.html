@@ -26,34 +26,30 @@
 		<script src="./mpc.js"></script>
 	</head>
 	<body>
-		<section>
-		<h2> Multiparty Quantum Computations </h2>
-		<h3> Goal: </h3>
-		<p>
+		<section class="slide-title">Multiparty Quantum Computations</section>
+
+		<section class="slide-item"><b>Goal:</b>
 		Compute $f(|x_1\rangle, \ldots, |x_n\rangle)
 			=(|y_1\rangle, \ldots, |y_n\rangle)$.
-		</p>
 		</section>
 
-		<section class="slide-content" data-visible-from="3">
-			<h3> Security: </h3>
-			<p>Malicious $P_i$ learns only $y_i$.</p>
+		<section class="slide-content slide-item" data-visible-from="3">
+			<b>Security:</b>
+			Malicious $P_i$ learns only $y_i$.
 		</section>
 
-		<section class="slide-content" data-visible-from="4">
-			<h3> What if the protocol aborts? </h3>
+		<hr class="slide-content" data-visible-from="4">
+
+		<section class="slide-content slide-item" data-visible-from="4">
+			<i>Denial of Service</i> attack possible:
 		</section>
 
-		<section class="slide-content" data-visible-from="5">
-			<p>Unavoidable with dishonest majority.</p>
+		<section class="slide-content slide-sub-item" data-visible-from="5">
+			Unavoidable with dishonest majority.
 		</section>
 
-		<section class="slide-content" data-visible-from="6">
-			<p>This is a <i>Denial of Service</i> attack.</p>
-		</section>
-
-		<section class="slide-content" data-visible-from="7">
-			<p>Quantum inputs are forever lost.</p>
+		<section class="slide-content slide-sub-item" data-visible-from="6">
+			Quantum inputs are forever lost.
 		</section>
 	</body>
 </html>

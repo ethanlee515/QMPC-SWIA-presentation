@@ -4,6 +4,12 @@ body {
 	font-family: sans-serif;
 }
 
+.slide-title {
+	font-size: 50px;
+	margin: 45px 0;
+	color: #44b;
+}
+
 h1 {
 	font-size: 65px;
 	margin: 60px 0;
@@ -20,6 +26,14 @@ h3 {
 }
 
 p {
+	margin: 25px;
+}
+
+.slide-item {
+	margin: 25px 0;
+}
+
+.slide-sub-item {
 	margin: 25px;
 }
 
