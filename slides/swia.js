@@ -110,6 +110,10 @@ function nextSlide() {
 			drawParty(container, 2, true);
 			break;
 		}
+		case 8: {
+			drawParty(container, 1, true);
+			break;
+		}
 		case 9: {
 			location.href = "main-theorem.html";
 			break;
