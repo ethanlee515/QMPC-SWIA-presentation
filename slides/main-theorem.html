@@ -27,18 +27,23 @@
 		<script src="main-theorem.js"></script>
 	</head>
 	<body>
-		<h1>Our Contribution</h1>
+		<section class="slide-title">Our Contribution</section>
 		<div class="result" id="main-theorem">
-			<p class="statement">
-			Assuming good classical homomorpic encryption and multiparty computation protocol,
-			there exists a protocol for computing any multiparty quantum circuit with identifiable abort.
-			</p>
+			<div id="main-theorem-statement">
+				Assuming verifiable homomorpic quantum encryption and classical multiparty computation protocol,
+				there exists a protocol for computing any multiparty quantum circuit with identifiable abort.
+			</div>
 		</div>
 		<div class="slide-content" id="arrow" data-visible-from="1"></div>
 		<div class="result slide-content" id="round-efficient" data-visible-from="1">
-			<p class="statement">
-			Our round-complexity does not depend on the circuit.
-			</p>
+			<div id="round-efficient-statements">
+				<span class="statement">
+					Our round complexity does not depend on the circuit.
+				</span>
+				<span class="statement slide-content" data-visible-from="2">
+					Unlike [BCKM21], our round complexity does depend on number of parties and the security parameter.
+				</span>
+			</div>
 		</div>
 	</body>
 </html>

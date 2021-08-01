@@ -1,5 +1,5 @@
 function nextSlide() {
-	if(currentSlide == 2) {
+	if(currentSlide == 3) {
 		location.href = "qubit-sending.html";
 	}
 }
