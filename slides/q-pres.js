@@ -24,6 +24,49 @@ function getPartyLocation(canvas, p) {
 	}
 }
 
+function drawParty(container, partyID, isMalicious) {
+	if(partyID < 1 || partyID > 4)
+		throw "Invalid party ID";
+	let canvas = container.find('canvas');
+	let width = canvas.width();
+	let height = canvas.height();
+	let ctx = canvas[0].getContext("2d");
+	ctx.lineWidth = 2;
+
+	let [partyX, partyY] = getPartyLocation(canvas, partyID);
+	let partyRadius = height / 10;
+
+	let eraseRadius = partyRadius * 1.1;
+	ctx.beginPath();
+	ctx.rect(partyX - eraseRadius / 2, partyY - eraseRadius / 2,
+		eraseRadius, eraseRadius);
+	ctx.fillStyle = "white";
+	ctx.fill();
+
+	ctx.strokeStyle = isMalicious ? "#F00" : "#000";
+
+	ctx.beginPath();
+	ctx.arc(partyX, partyY, partyRadius, 0, 2 * Math.PI);
+	ctx.stroke();
+
+	ctx.strokeStyle = "#000";
+
+	let svg = $(MathJax.tex2svg(`P_${partyID}`)).find('svg');
+	container.append(svg);
+	svg.css({
+		position: 'absolute',
+		left: partyX - svg.width() / 2,
+		top: partyY - svg.height() / 2
+	});
+	svg.on("load", () => {
+		svg.css({
+			position: 'absolute',
+			left: partyX - svg.width() / 2,
+			top: partyY - svg.height() / 2
+		});
+	});
+}
+
 function make4parties(container) {
 	let canvas = container.find('canvas');
 	let width = canvas.width();
@@ -34,32 +77,8 @@ function make4parties(container) {
 	ctx.fillStyle = "white";
 	ctx.fill();
 
-	function drawParty(partyID) {
-		if(partyID < 1 || partyID > 4)
-			throw "Invalid party ID";
-		let [partyX, partyY] = getPartyLocation(canvas, partyID);
-		let partyRadius = height / 10;
-		ctx.beginPath();
-		ctx.arc(partyX, partyY, partyRadius, 0, 2 * Math.PI);
-		ctx.stroke();
-
-		let svg = $(MathJax.tex2svg(`P_${partyID}`)).find('svg');
-		container.append(svg);
-		svg.css({
-			position: 'absolute',
-			left: partyX - svg.width() / 2,
-			top: partyY - svg.height() / 2
-		});
-		svg.on("load", () => {
-			svg.css({
-				position: 'absolute',
-				left: partyX - svg.width() / 2,
-				top: partyY - svg.height() / 2
-			});
-		});
-	}
 	for(let i = 1; i <= 4; ++i) {
-		drawParty(i);
+		drawParty(container, i);
 	}
 }
 

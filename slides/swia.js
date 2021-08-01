@@ -12,6 +12,9 @@ function makeCanvasWithParties(width, height) {
 
 function illustrateLostMessage(width, height) {
 	let container = makeCanvasWithParties(width, height);
+	//Redraw party 1 as malicious
+	drawParty(container, 1, true);
+
 	let canvas = container.find("canvas");
 	drawLineBetweenParties(1, 2, canvas, true);
 	let [p1x, p1y] = getPartyLocation(canvas, 1);
@@ -26,8 +29,14 @@ function illustrateLostMessage(width, height) {
 	ctx.moveTo(crossX + crossRadius, crossY - crossRadius);
 	ctx.lineTo(crossX - crossRadius, crossY + crossRadius);
 	ctx.stroke();
+	ctx.beginPath();
+	ctx.moveTo(crossX - crossRadius, crossY - crossRadius);
+	ctx.lineTo(crossX + crossRadius, crossY + crossRadius);
+	ctx.stroke();
+	return container;
 }
 
+let container;
 
 function nextSlide() {
 	let canvasWidth = 800;
@@ -88,7 +97,7 @@ function nextSlide() {
 		}
 		case 4: {
 			$('.canvas-container').remove();
-			illustrateLostMessage(canvasWidth, canvasHeight);
+			container = illustrateLostMessage(canvasWidth, canvasHeight);
 			break;
 		}
 		case 6: {
@@ -97,6 +106,11 @@ function nextSlide() {
 			break;
 		}
 		case 7: {
+			drawParty(container, 1, false);
+			drawParty(container, 2, true);
+			break;
+		}
+		case 9: {
 			location.href = "main-theorem.html";
 			break;
 		}
