@@ -112,12 +112,38 @@ function eraseLineBetweenParties(canvas, pi, pj) {
 	ctx.moveTo(startX, startY);
 	ctx.lineTo(endX, endY);
 	ctx.strokeStyle = "#FFF";
-	ctx.lineWidth = 20;
+	ctx.lineWidth = 45;
 	ctx.stroke();
 	ctx.lineWidth = 2;
 	ctx.strokeStyle = "#000";
 }
 
+function drawX(canvas, pi, pj) {
+	if(pi < 1 || pi > 4 || pj < 1 || pj > 4)
+		throw "Invalid party ID";
+	let [piLocX, piLocY] = getPartyLocation(canvas, pi);
+	let [pjLocX, pjLocY] = getPartyLocation(canvas, pj);
+	let crossX = (piLocX + pjLocX) / 2;
+	let crossY = (piLocY + pjLocY) / 2;
+	let crossRadius = 20;
+	let ctx = canvas[0].getContext("2d");
+	ctx.strokeStyle = "#F00";
+	ctx.lineWidth = 3;
+	ctx.beginPath();
+	ctx.moveTo(crossX + crossRadius, crossY - crossRadius);
+	ctx.lineTo(crossX - crossRadius, crossY + crossRadius);
+	ctx.stroke();
+	ctx.beginPath();
+	ctx.moveTo(crossX - crossRadius, crossY - crossRadius);
+	ctx.lineTo(crossX + crossRadius, crossY + crossRadius);
+	ctx.stroke();
+
+	ctx.strokeStyle = "#000";
+	ctx.lineWidth = 2;
+}
+
+//Global variable is bad practice...
+//TODO Just get this through CSS selector instead?
 let container;
 
 function nextSlide() {
@@ -167,14 +193,26 @@ function nextSlide() {
 			for(let pi = 1; pi <= 4; ++pi) {
 				for(let pj = pi + 1; pj <= 4; ++pj) {
 					drawLineBetweenParties(pi, pj, canvas);
-
 				}
 			}
-
+			break;
 		}
 		case 6: {
-			//green?
-
+			//Green
+			let canvas = container.find("canvas");
+			drawLineBetweenParties(1, 2, canvas, false, "#0C0");
+			break;
+		}
+		case 7: {
+			let canvas = container.find("canvas");
+			//Whether "canvas" is first or last argument is really inconsistent right now...
+			drawX(canvas, 1, 2);
+			break;
+		}
+		case 8: {
+			let canvas = container.find("canvas");
+			eraseLineBetweenParties(canvas, 1, 2);
+			break;
 		}
 
 			
