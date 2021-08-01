@@ -230,9 +230,9 @@ function drawOurStrategy() {
 	drawArrow(canvas, x_homo_eval + 25, y2, x_eval - 25, y1, 20);
 	drawArrow(canvas, x_homo_eval + 25, y2, x_eval - 25, y2, 20);
 	drawArrow(canvas, x_homo_eval + 25, y2, x_eval - 25, y3, 20);
-	drawPacketAt(canvas, x_eval, y1);
-	drawPacketAt(canvas, x_eval, y2);
-	drawPacketAt(canvas, x_eval, y3);
+	drawPacketAt(canvas, x_eval, y1, "#EE5");
+	drawPacketAt(canvas, x_eval, y2, "#EE5");
+	drawPacketAt(canvas, x_eval, y3, "#EE5");
 
 
 	/* ECC Dec */
