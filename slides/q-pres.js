@@ -82,9 +82,11 @@ function make4parties(container) {
 	}
 }
 
-function drawLineBetweenParties(pi, pj, canvas, isArrow) {
+function drawLineBetweenParties(pi, pj, canvas, isArrow, color) {
 	if(pi < 1 || pi > 4 || pj < 1 || pj > 4)
 		throw "Invalid party ID";
+	if(!color)
+		color = "#000";
 	let [piLocX, piLocY] = getPartyLocation(canvas, pi);
 	let [pjLocX, pjLocY] = getPartyLocation(canvas, pj);
 
@@ -100,6 +102,7 @@ function drawLineBetweenParties(pi, pj, canvas, isArrow) {
 	ctx.beginPath();
 	ctx.moveTo(startX, startY);
 	ctx.lineTo(endX, endY);
+	ctx.strokeStyle = color;
 	ctx.stroke();
 	if(isArrow) {
 		let dy = endY - startY;
@@ -116,6 +119,7 @@ function drawLineBetweenParties(pi, pj, canvas, isArrow) {
 			ctx.stroke();
 		}
 	}
+	ctx.strokeStyle = "#000";
 }
 
 let currentSlide = 0;
