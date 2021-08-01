@@ -185,9 +185,9 @@ function drawHomomorphicQECC() {
 
 function drawOurStrategy() {
 	let canvas = $("#our-strategy");
-	let y1 = 20;
-	let y2 = 60;
-	let y3 = 100;
+	let y1 = 25;
+	let y2 = 65;
+	let y3 = 105;
 
 	/* Input */
 	drawDataAt(canvas, x_in, y2);
@@ -259,10 +259,66 @@ function nextSlide() {
 			drawEncThenQECC();
 			drawHomomorphicQECC();
 			drawOurStrategy();
-		}
-		default: {
 			break;
 		}
+		case 3: {
+			let canvas = $("#homomorphic-qecc");
+			let y1 = 20;
+			let y2 = 60;
+			let y3 = 100;
 
+			let x_ecc = (x_in + x_commit) / 2;
+			drawPacketAt(canvas, x_ecc, y1, "#FAA");
+			drawPacketAt(canvas, x_ecc, y2, "#FAA");
+			drawPacketAt(canvas, x_ecc, y3, "#FAA");
+
+			let x_cross = (x_in + x_ecc) / 2;
+			let cross_rad_x = (x_cross - x_in) / 3;
+			let cross_rad_y = y2 - y1;
+
+			let ctx = canvas[0].getContext("2d");
+			ctx.strokeStyle = "#F00";
+
+			ctx.beginPath();
+			ctx.moveTo(x_cross - cross_rad_x, y2 - cross_rad_y);
+			ctx.lineTo(x_cross + cross_rad_x, y2 + cross_rad_y);
+			ctx.stroke();
+
+			ctx.beginPath();
+			ctx.moveTo(x_cross - cross_rad_x, y2 + cross_rad_y);
+			ctx.lineTo(x_cross + cross_rad_x, y2 - cross_rad_y);
+			ctx.stroke();
+
+			ctx.strokeStyle = "#000";
+
+			break;
+		}
+		case 5: {
+			let canvas = $("#our-strategy");
+			let ctx = canvas[0].getContext("2d");
+			ctx.setLineDash([8, 3]);
+
+			let [pktX, pktY] = getPacketRads();
+			let y1 = 25;
+			let y3 = 105;
+
+			let width = (x_eval + 20) - (x_commit - 20);
+			let rectTop = y1 - pktY - 5;
+			let rectBot = y3 + pktY + 5;
+			let height = rectBot - rectTop;
+			ctx.strokeStyle = "#55F";
+			ctx.strokeRect(x_commit - 20, rectTop, width, height);
+
+			ctx.textAlign = "left";
+			ctx.font = "30px sans-serif";
+			ctx.fillStyle = "#55F";
+			ctx.fillText("Homomorphic Encryption", x_eval - 300, rectBot + 30);
+
+			break;
+		}
+		case 6: {
+			//TODO go to next page
+			break;
+		}
 	}
 }
