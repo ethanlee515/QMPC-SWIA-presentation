@@ -92,7 +92,7 @@ function drawTypicalMPC() {
 
 	/* Commit */
 	drawArrow(canvas, x_in + 50, y, x_commit - 50, y, 20);
-	ctx.fillText("commit", (x_in + x_commit) / 2, y - 25);
+	ctx.fillText("enc", (x_in + x_commit) / 2, y - 25);
 	drawDataAt(canvas, x_commit, y, "#EE5");
 
 	/* Eval */
@@ -261,7 +261,20 @@ function nextSlide() {
 			drawOurStrategy();
 			break;
 		}
-		case 3: {
+		case 2: {
+			let canvas = $("#enc-then-qecc");
+			let y1 = 20;
+			let y2 = 60;
+			let y3 = 100;
+
+			let x_ecc = (x_commit + x_eval) / 2;
+			drawPacketAt(canvas, x_ecc, y1, "#FAA");
+			drawPacketAt(canvas, x_ecc, y2, "#FAA");
+			drawPacketAt(canvas, x_ecc, y3, "#FAA");
+
+			break;
+		}
+		case 4: {
 			let canvas = $("#homomorphic-qecc");
 			let y1 = 20;
 			let y2 = 60;
@@ -293,7 +306,7 @@ function nextSlide() {
 
 			break;
 		}
-		case 5: {
+		case 6: {
 			let canvas = $("#our-strategy");
 			let ctx = canvas[0].getContext("2d");
 			ctx.setLineDash([8, 3]);
@@ -316,7 +329,7 @@ function nextSlide() {
 
 			break;
 		}
-		case 6: {
+		case 7: {
 			//TODO go to next page
 			break;
 		}

@@ -36,6 +36,16 @@ function illustrateLostMessage(width, height) {
 	return container;
 }
 
+function illustrateMessage(width, height) {
+	let container = makeCanvasWithParties(width, height);
+	//Redraw party 1 as malicious
+	drawParty(container, 1, true);
+
+	let canvas = container.find("canvas");
+	drawLineBetweenParties(1, 2, canvas, true);
+}
+
+
 let container;
 
 function nextSlide() {
@@ -95,26 +105,31 @@ function nextSlide() {
 			container.append(abortMessage);
 			break;
 		}
-		case 4: {
+		case 5: {
+			$('.canvas-container').remove();
+			illustrateMessage(canvasWidth, canvasHeight);
+			break;
+		}
+		case 6: {
 			$('.canvas-container').remove();
 			container = illustrateLostMessage(canvasWidth, canvasHeight);
 			break;
 		}
-		case 6: {
+		case 8: {
 			let abortMessage = makeAbortMessage("Who is malicious...?");
 			$('.canvas-container').append(abortMessage);
 			break;
 		}
-		case 7: {
+		case 9: {
 			drawParty(container, 1, false);
 			drawParty(container, 2, true);
 			break;
 		}
-		case 8: {
+		case 10: {
 			drawParty(container, 1, true);
 			break;
 		}
-		case 9: {
+		case 12: {
 			location.href = "main-theorem.html";
 			break;
 		}

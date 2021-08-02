@@ -245,31 +245,31 @@ function nextSlide() {
 			drawLineBetweenParties(4, 2, canvas, false, "#0C0");
 			break;
 		}
-		case 13: {
+		case 14: {
 			let canvas = container.find("canvas");
 			drawX(canvas, 3, 2);
 			break;
 		}
-		case 14: {
+		case 15: {
 			let canvas = container.find("canvas");
 			eraseLineBetweenParties(canvas, 1, 4);
 			drawLineBetweenParties(4, 2, canvas, false, "#000");
 			break;
 		}
 		/* Path 4 */
-		case 15: {
+		case 16: {
 			let canvas = container.find("canvas");
 			drawLineBetweenParties(1, 3, canvas, false, "#0C0");
 			drawLineBetweenParties(3, 4, canvas, false, "#0C0");
 			drawLineBetweenParties(4, 2, canvas, false, "#0C0");
 			break;
 		}
-		case 16: {
+		case 17: {
 			let canvas = container.find("canvas");
 			drawX(canvas, 3, 4);
 			break;
 		}
-		case 17: {
+		case 18: {
 			let canvas = container.find("canvas");
 			eraseLineBetweenParties(canvas, 3, 4);
 			drawLineBetweenParties(1, 3, canvas, false, "#000");
@@ -277,7 +277,7 @@ function nextSlide() {
 			break;
 		}
 		/* SWIA */
-		case 18: {
+		case 19: {
 			let canvas = container.find("canvas");
 			let canvasWidth = canvas.width();
 			let canvasHeight = canvas.height();
@@ -328,6 +328,10 @@ function nextSlide() {
 			});
 			container.append(abortMessage);
 			MathJax.typeset();
+			break;
+		}
+		case 20: {
+			location.href = "strategy.html";
 			break;
 		}
 	}
