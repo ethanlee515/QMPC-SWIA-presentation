@@ -330,7 +330,7 @@ function nextSlide() {
 			break;
 		}
 		case 7: {
-			//TODO go to next page
+			location.href = "construction.html";
 			break;
 		}
 	}
