@@ -14,11 +14,16 @@ function getPacketRads() {
 	return [11, 16];
 }
 
-function drawPacketAt(canvas, x, y) {
+function drawPacketAt(canvas, x, y, color) {
+	if(!color)
+		color = "#000";
+	else
+		console.log("custom colored packet found");
+
 	let [packetRadX, packetRadY] = getPacketRads();
 	let ctx = canvas[0].getContext("2d");
 	ctx.lineWidth = 2;
-	ctx.strokeStyle = "#000";
+	ctx.strokeStyle = color;
 	ctx.beginPath();
 	//To upper left corner
 	ctx.moveTo(x - packetRadX, y - packetRadY);
@@ -90,6 +95,88 @@ function illustrateECC(canvas) {
 			arrowEndY,
 			10);
 	}
+}
+
+function removeSenderECC(canvas) {
+	let height = canvas.height();
+	let partyRadius = height / 10;
+	let [pktRadX, pktRadY] = getPacketRads();
+	let [p1x, p1y] = getPartyLocation(canvas, 1);
+	let ctx = canvas[0].getContext("2d");
+	ctx.lineWidth = 2;
+
+	ctx.fillStyle = "white";
+	ctx.fillRect(0,
+		0,
+		p1x - partyRadius - 2,
+		height);
+	ctx.fillStyle = "black";
+}
+
+function removeReceivedECC(canvas) {
+	let width = canvas.width();
+	let height = canvas.height();
+	let partyRadius = height / 10;
+	let [p2x, p2y] = getPartyLocation(canvas, 2);
+
+	let x = p2x + partyRadius + 2;
+
+	let ctx = canvas[0].getContext("2d");
+	ctx.lineWidth = 2;
+
+	ctx.fillStyle = "white";
+	ctx.fillRect(x,
+		0,
+		width,
+		height);
+	ctx.fillStyle = "black";
+}
+
+function illustrateReceivedECC(canvas) {
+	let height = canvas.height();
+	let partyRadius = height / 10;
+	let [pktRadX, pktRadY] = getPacketRads();
+	let [p2x, p2y] = getPartyLocation(canvas, 2);
+	let ctx = canvas[0].getContext("2d");
+	ctx.lineWidth = 2;
+
+	let x = p2x + partyRadius + 3 * pktRadX;
+
+	let srcY1 = 5 + 3 * pktRadY;
+	for(let num = 0; num < 4; ++num) {
+		let y = srcY1 + pktRadY + (3 * (num - 1) * pktRadY);
+		if(num == 1)
+			drawPacketAt(canvas, x, y, "#666");
+		else
+			drawPacketAt(canvas, x, y);
+	}
+
+	let crossY = srcY1 + pktRadY;
+	let crossRadius = pktRadX * 2;
+
+	ctx.strokeStyle = "#F00";
+	ctx.lineWidth = 2;
+
+	ctx.beginPath();
+	ctx.moveTo(x + crossRadius, crossY - crossRadius);
+	ctx.lineTo(x - crossRadius, crossY + crossRadius);
+	ctx.stroke();
+	ctx.beginPath();
+	ctx.moveTo(x - crossRadius, crossY - crossRadius);
+	ctx.lineTo(x + crossRadius, crossY + crossRadius);
+	ctx.stroke();
+
+	ctx.strokeStyle = "#000";
+
+
+	
+
+
+	
+
+	
+	
+
 }
 
 //Draw thick white line
@@ -245,8 +332,19 @@ function nextSlide() {
 			drawLineBetweenParties(4, 2, canvas, false, "#0C0");
 			break;
 		}
+		/* Success? */
+		case 13: {
+			let canvas = container.find("canvas");
+			//Remove packets
+			removeSenderECC(canvas);
+			//draw them on receiver side
+			illustrateReceivedECC(canvas);
+			break;
+		}
+		/* Back to path 3 */
 		case 14: {
 			let canvas = container.find("canvas");
+			removeReceivedECC(canvas);
 			drawX(canvas, 3, 2);
 			break;
 		}
