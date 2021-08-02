@@ -80,18 +80,20 @@ Our first step is to solve the issue with sending quantum messages that I mentio
 
 Let's first fully define the problem.
 So P1 wants to send a qubit to P2.
-Malicious players can drop outgoing messages like I mentioned earlier.
-They can also drop incoming messages.
-For now, let's say that's everything the bad guys can do.
-We'll worry about things like privacy or authentication later;
-right now we're happy as long as we can send and receive quantum messages.
+For this presentation we'll make some simplifying assumptions about the adversary.
+I encourage you to read the our paper for a more complete treatment on this.
 
-So now we present our solution which we call routing.
-As you can probably tell from the name,
-the algorithm is inspired from computer networks.
+Today we allow the bad guys to drop outgoing messages.
+They can also drop incoming messages.
+For now that's it.
+
+So now I've defined the problem we want to solve,
+I present our solution which we call routing.
+As you might tell from the name,
+this algorithm is inspired from computer networks.
 Here's how it goes.
 We first create our packets by running an error correcting code on the input.
-We initialize our network as a complete graph like this.
+Our network is initialized as a complete graph like this.
 We now try to route these packets from P1 to P2.
 
 Naturally we try the direct path first.
@@ -104,20 +106,20 @@ And now we've found out that this edge is unreliable.
 We get rid of it.
 
 We next try a different path. Maybe this green one.
-For the demo, let's say a packet gets dropped here this time.
-That'll break this edge.
-Generally, we erase the edge where a packet drop occurs.
+For this demo, let's say a packet gets dropped here this time.
+That'll break this edge, but not this other one.
+Generally, we erase the edge where the packet drop occurs.
+
 We then find another path, and this process just kinda repeats itself.
 
-Every time a packet gets dropped, an edge breaks.
 Now let's assume the algorithm eventually terminates successfully.
 Meaning that P1 has no packets left.
 Everything is either sent to P2 or dropped.
 Obviously the number of packet losses is bounded by the number of edges in the graph.
-Since we have this upper bound, the ECC can always be decoded as long as it was set up with the right parameters.
+Since we have this upper bound, the ECC can always be decoded.
 
-So I guess we've shown some sort of correctness property.
-Let's try to make the protocol abort instead.
+So I guess I've shown some sort of correctness property.
+Let's next try to make the protocol abort instead.
 
 So let's say this path gets broken again. We get rid of this.
 Then same thing again.
@@ -126,17 +128,18 @@ Now there's no paths from P1 to P2, so the protocol aborts.
 Time to find the bad guys.
 
 See how the graph is disconnected, and all the honest parties are on the same connected component.
-Turns out that's true in general,
-so everyone can just blame people on other connected components.
+It turns out that'll be true in general.
+So everyone can just blame people on different connected components,
+and that will satisfy IA.
 
-So with this subproblem, and with this really restricted adversary model,
+To sum things up, for this subproblem, and with this really restricted adversary model,
 we're able to get something like SWIA.
 
-Now let's build a real MPQC, and we'll see if this routing construction comes in useful.
+Now it's time to build a real MPQC.
 
 # Building MPQC
 
-Before we start going at it,
+Before we go at it,
 let's have a quick rundown on I guess the common strategy out there.
 
 There are usually three phases.
@@ -156,18 +159,19 @@ Then they can ECC the messages right before sending them.
 Like this.
 
 But it actually doesn't work.
-This encoding here has some nice properties.
-It's basically an authentication.
-But when we take its ECC, the codeword loses those properties.
-So when we route this, the packets tampered by the relays and we won't notice until it's too late.
+Like I mentioned earlier, this encoding is basically some kind of authentication.
+It stops the bad guys from modifying the underlying message.
+But when we take its ECC, this protection doesn't work anymore on the individual codewords.
+So when we route this, the packets get tampered by the relays and we won't notice until it's too late.
 
-So maybe we should try to take the ECC before encoding. Like this here.
+Let's try something else.
+Maybe we should try to take the ECC before encoding. Like this here.
 Then maybe we try to homomorphically evaluate over these ECC too.
-This strategy almost works, but let me show you a concrete attack.
+This strategy almost works, but unfortunately we have a concrete attack.
 
 See, this ECC might be prepared by malicious parties.
 So they can do something like this.
-Where these are now some garbage that's not a real ECC codeword.
+These are some garbage that's not a real ECC codeword.
 So this evaluation is done over some garbage input.
 And well, we know what they say.
 "Garbage in, garbage out".
