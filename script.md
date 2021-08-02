@@ -187,7 +187,21 @@ A caveat is that without the ECC, we can't send quantum messages.
 So all these evaluation would have to be done locally.
 And so our construction uses a homomorphic encryption scheme.
 
+This is the actual outline of our construction.
+Let's fill in the gaps now.
+
 # Construction
+
+Let's put everything together.
+First of all, we use homomorphic encryption, so we have a server.
+
+TODO and I didn't draw the rest yet.
+The idea is to "bend" and "embed" the picture from the last slide here.
+
+There's another caveat though.
+First, those who are familiar with homomorphic evaluation schemes might notice that we need an evaluation key.
+Moreover, the evaluation key is actually quantum, so we can't just prepare it by running a classical MPC protocol.
+There's some nontrivial things happening there that I encourage you to read the paper to find out.
 
 # Conclusion
 
