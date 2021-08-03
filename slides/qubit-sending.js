@@ -17,8 +17,6 @@ function getPacketRads() {
 function drawPacketAt(canvas, x, y, color) {
 	if(!color)
 		color = "#000";
-	else
-		console.log("custom colored packet found");
 
 	let [packetRadX, packetRadY] = getPacketRads();
 	let ctx = canvas[0].getContext("2d");
@@ -27,10 +25,8 @@ function drawPacketAt(canvas, x, y, color) {
 	ctx.beginPath();
 	//To upper left corner
 	ctx.moveTo(x - packetRadX, y - packetRadY);
-	//To top of packet
-	ctx.lineTo(x, y - packetRadY);
 	//Upper right line
-	ctx.lineTo(x + packetRadX, y - packetRadY + packetRadX);
+	ctx.lineTo(x + packetRadX, y - packetRadY + 2 * packetRadX);
 	//To bottom right corner
 	ctx.lineTo(x + packetRadX, y + packetRadY);
 	//To bottom left corner

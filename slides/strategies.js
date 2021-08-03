@@ -10,10 +10,8 @@ function drawPacketAt(canvas, x, y, fill) {
 	ctx.beginPath();
 	//To upper left corner
 	ctx.moveTo(x - packetRadX, y - packetRadY);
-	//To top of packet
-	ctx.lineTo(x, y - packetRadY);
 	//Upper right line
-	ctx.lineTo(x + packetRadX, y - packetRadY + packetRadX);
+	ctx.lineTo(x + packetRadX, y - packetRadY + 2 * packetRadX);
 	//To bottom right corner
 	ctx.lineTo(x + packetRadX, y + packetRadY);
 	//To bottom left corner
