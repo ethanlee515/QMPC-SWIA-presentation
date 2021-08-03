@@ -97,17 +97,32 @@ function nextSlide() {
 
 	switch(currentSlide) {
 		case 0: {
-			let container = makeCanvasWithParties(canvasWidth, canvasHeight);
-			let canvas = container.find("canvas");
-			drawLineBetweenParties(4, 1, canvas, true);
-
-			let abortMessage = makeAbortMessage("Player 4 is malicious!");
-			container.append(abortMessage);
+			illustrateMessage(canvasWidth, canvasHeight);
+			break;
+		}
+		case 1: {
+			$('.canvas-container').remove();
+			container = illustrateLostMessage(canvasWidth, canvasHeight);
+			break;
+		}
+		case 2: {
+			let abortMessage = makeAbortMessage("Who is malicious...?");
+			$('.canvas-container').append(abortMessage);
 			break;
 		}
 		case 3: {
+			drawParty(container, 1, false);
+			drawParty(container, 2, true);
+			break;
+		}
+		case 4: {
+			drawParty(container, 1, true);
+			break;
+		}
+		case 6: {
 			location.href = "main-theorem.html";
 			break;
 		}
 	}
+
 }
