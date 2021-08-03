@@ -429,11 +429,8 @@ function nextSlide() {
 			break;
 		}
 		case 20: {
-			location.href = "strategy.html";
+			location.href = "strategy-encecc.html";
 			break;
 		}
 	}
-
-
-
 }
