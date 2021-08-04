@@ -97,6 +97,7 @@ function nextSlide() {
 			break;
 		}
 		case 4: {
+			/*
 			let canvas = $("#our-strategy");
 			let ctx = canvas[0].getContext("2d");
 
@@ -109,8 +110,8 @@ function nextSlide() {
 			ctx.font = "30px sans-serif";
 			ctx.fillStyle = "#A70";
 			ctx.fillText("Routed to server", x_commit, rectBot + 30);
+			*/
 			break;
-
 		}
 		case 5: {
 			location.href = "summary.html";

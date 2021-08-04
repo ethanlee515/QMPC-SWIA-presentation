@@ -1,0 +1,42 @@
+#routed-to-server {
+	position: absolute;
+	width: 250px;
+	height: 50px;
+	left: 500px;
+	top: 210px;
+	background-color: #FCC;
+	border-radius: 10px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 20px;
+}
+
+#arrow1 {
+	position: absolute;
+	width: 0;
+	height: 0;
+	left: 600px;
+	top: 170px;
+
+	border-style: solid;
+	border-width: 0 60px 40px 0px;
+	border-color: #FCC transparent;
+}
+
+#arrow2 {
+	position: absolute;
+	width: 0;
+	height: 0;
+	left: 600px;
+	top: 170px;
+
+	border-style: solid;
+	border-width: 0 40px 40px 0px;
+	border-color: #FFF transparent;
+}
+
+.canvas-container {
+	position: relative;
+}
