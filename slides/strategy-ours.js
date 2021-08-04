@@ -27,5 +27,9 @@ function nextSlide() {
 
 			break;
 		}
+		case 2: {
+			location.href = "summary.html";
+			break;
+		}
 	}
 }
