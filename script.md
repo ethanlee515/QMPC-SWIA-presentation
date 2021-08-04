@@ -145,44 +145,48 @@ Now it's time to build a real MPQC.
 Before we go at it,
 let's have a quick rundown on I guess the common strategy out there.
 
-There are usually three phases.
-In the first phase, everyone encodes their own input.
-There's no quantum communications here,
-but the parties might run some kind of classical MPC to decide on the encryption key.
-This encoding has a bunch of good properties.
-For now you can think of it as an authentication.
+As a really rough picture, there are kinda three phases.
+Encryption, evaluation, and decryption.
 
-Recall that under the quantum setting, authentication implies encryption, so this message is now encrypted too.
+In the first phase, everyone encrypts their own input.
+There's classical communications only.
+The parties might run a classical MPC to decide on their encryption key for example.
+But there's no quantum communications yet.
+
+Here everyone just encodes their inputs using QAS.
+Recall that under the quantum setting, authentication implies encryption,
+so this is also encrypted in the usual sense.
 
 Once that's done, we move on to the next phase.
 The parties will evaluate homomorphically over the encoded input.
-This phase involves passing quantum messages around.
+This phase would involve passing quantum messages around.
 
 Finally, once the evaluation is done, everyone can just decrypt their own output.
 
 # Strategy - Enc then ECC
 
 So let's see how routing fit into this picture.
-I guess the first idea is to see if we can kinda massage an existing MPQC scheme and get IA out of it.
-Maybe every time a message is sent, we send it using the routing subroutine from earlier.
-And we maybe keep the protocol the same otherwise.
+Of course the first idea is to see if we can kinda massage an existing MPQC scheme and get IA out of it.
+For example, maybe every time there's a quantum message,
+we send it using the routing subroutine from earlier.
+And we try to touch the rest of the protocol as little as possible.
 
 Kinda like this here.
 Everyone encode their inputs locally like normal.
-They can ECC the messages right before sending them.
+They can then run error-correcting code the messages right before routing them out.
 
-But it actually doesn't work.
-Like I mentioned earlier, this encoding is basically some kind of authentication.
+Well, unfortunately, it actually doesn't work.
+Recall this encoding is some kind of authentication.
 It stops the bad guys from modifying the underlying message.
-But when we take its ECC, this protection doesn't work anymore on the individual codewords.
+But when we take its ECC, this protection doesn't work anymore on the individual packets.
 So when we route this, the packets get tampered by the relays and we won't notice until it's too late.
 
 # Strategy - Homomorphic ECC
 
-Since that didn't work, let's try switching the ECC and Authentication.
+Since that didn't work, let's switch the order of the QECC and Authentication.
 Like this here.
 
-Then maybe we try to homomorphically evaluate over these ECC too.
+Then maybe we try to homomorphically evaluate over these QECC too.
 
 Long story short, this strategy almost works, but unfortunately we have a concrete attack.
 

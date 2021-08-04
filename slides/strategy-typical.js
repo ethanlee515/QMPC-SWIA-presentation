@@ -30,5 +30,9 @@ function nextSlide() {
 			drawTypicalMPC();
 			break;
 		}
+		case 9: {
+			location.href = "strategy-encecc.html";
+			break;
+		}
 	}
 }
