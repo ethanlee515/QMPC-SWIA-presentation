@@ -424,7 +424,7 @@ function nextSlide() {
 			MathJax.typeset();
 			break;
 		}
-		case 20: {
+		case 23: {
 			location.href = "strategy-encecc.html";
 			break;
 		}

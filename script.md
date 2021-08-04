@@ -56,13 +56,11 @@ So there's just not enough information to catch the cheater.
 
 So under the quantum setting, we can't even send protocol messages without running into these issues.
 A priori it almost seems like there's some fundamental issues with achieving IA under the quantum setting.
+It turned out that we were able to overcome this issue and some other challenges that I'll also mention.
 
 # Main theorem
 
-It turned out that we were able to overcome this issue and some other challenges that I'll also mention.
-We were able to build a MPQC protcol with IA.
-
-Here's the informal theorem statement.
+Here's our informal theorem statement.
 
 (Read off the slide)
 
@@ -76,7 +74,7 @@ They built a constant-round MPQC but it doesn't have identifiable abort.
 
 # Qubit-Sending
 
-Ok, so let's talk about how we do this.
+Ok, so let's talk about how did we do this.
 Our first step is to solve the issue with sending quantum messages that I mentioned earlier.
 
 Let's first fully define the problem.
@@ -130,15 +128,15 @@ Then same thing again.
 Now there's no paths from P1 to P2, so the protocol aborts.
 Time to find the bad guys.
 
-See how the graph is disconnected, and all the honest parties are on the same connected component.
-It turns out that'll be true in general.
-So everyone can just blame people on different connected components,
-and that will satisfy IA.
+So we first notice that the edges never break between any pair of honest parties.
+In terms of the graph, it means that they stay on the same connected component.
+So when the graph becomes disconnected, which is clearly true when the protocol aborts,
+the honest parties can just blame everyone on different connected components.
 
-To sum things up, for this subproblem, and with this really restricted adversary model,
+To sum things up, for this subproblem, and with this restricted adversary model,
 we're able to get something like SWIA.
 
-Now it's time to build a real MPQC.
+Now let's build a real MPQC off of this.
 
 # Strategy
 
@@ -251,4 +249,5 @@ Interesting open problem...
 Interesting consequence of our construction is that it's fair if the underlying cMPC is.
 
 TODO future works?
+
 
