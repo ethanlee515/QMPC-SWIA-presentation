@@ -1,11 +1,12 @@
 # Intro
 
-Hello everyone! Today we'll be talking about round efficient secure multiparty quantum computation with identifiable abort.
+Hello everyone! My name is Yi Lee, and today we'll be talking about round efficient secure multiparty quantum computation with identifiable abort.
+This is a joint work with Bar, Hao, Kai-Min, Mi-Ying, and Yu-Ching.
 
 # MPC
 
 Let's start with multiparty quantum computations. Or what we call MPQC.
-Here we have n parties, and our goal is to evaluate a function that looks like this.
+Here we have n parties, and our goal is to evaluate a function.
 It's got n quantum inputs; one from each party. Same idea with n outputs.
 So each party starts with their own private input, and they run some protocol.
 Exchange some quantum messages.
@@ -24,7 +25,7 @@ So we wanna ask: Is there anything we can do about this?
 # SWIA
 
 It turns out that the answer is yes.
-There's this stronger security notion called "identifiable abort", or what we call SWIA.
+There's this stronger security notion called "identifiable abort".
 It means that when things go wrong, everyone at least knows whose to blame.
 
 This idea was introduced in 2014 by this work.
