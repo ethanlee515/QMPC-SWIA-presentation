@@ -14,11 +14,10 @@ And when they're done, everybody gets their output.
 We say an MPC is secure if everyone learns only their own output.
 This security notion is ok, but it's really not the best.
 It allows what we call a "denial of service" attack,
-which basically means that the protocol can abort,
-and then nobody gets any output.
+which basically means the protocol might abort.
 It's well known that this kind of situation cannot be prevented with dishonest majority.
-So this attack will happen.
-When it does happen, all quantum inputs would be lost due to the no-cloning theorem.
+And then nobody gets any output.
+When this attack happens, all quantum inputs are consumed and lost to the no-cloning theorem.  
 
 So we wanna ask: Is there anything we can do about this?
 
@@ -26,22 +25,24 @@ So we wanna ask: Is there anything we can do about this?
 
 It turns out that the answer is yes.
 There's this stronger security notion called "identifiable abort", or what we call SWIA.
-It means that when things go wrong, everyone at least knows whose fault it is.
+It means that when things go wrong, everyone at least knows whose to blame.
 
-It's been done classically.
-In fact, we can make some simple changes to GMW and get IA.
+This idea was introduced in 2014 by this work.
+We can achieve this IA notion by making some changes to GMW.
 The key idea is to use broadcast and ZK proofs,
 so the honest parties can prove that they did what they're supposed to.
 
 But we can't broadcast a quantum state, so that strategy doesn't work for quantum.
 So we know some MPQC protocols, but they are pretty far from achieving IA.
 
-Let me show you why.
-Let's say these guys are running one of them. Maybe DGJ+.
-And here P1 is supposed to send a quantum message to P2.
-Let's say P1 is malicious, and so it refuses to send the message.
+# Challenge
 
-We've now lost a message.
+Turns out that it's hard to get IA under the quantum setting.
+In fact, there are issues with just sending protocol messages.
+
+Here P1 is supposed to send a quantum message to P2.
+Let's say P1 is malicious, and so it refuses to send it.
+So we've now lost a message.
 The no-cloning theorem says that's it's the only copy we have.
 So now there's no way to recover, and the protocol aborts.
 Now we need someone to blame.
@@ -80,19 +81,21 @@ Our first step is to solve the issue with sending quantum messages that I mentio
 
 Let's first fully define the problem.
 So P1 wants to send a qubit to P2.
-For this presentation we'll make some simplifying assumptions about the adversary.
-I encourage you to read the our paper for a more complete treatment on this.
-
-Today we allow the bad guys to drop outgoing messages.
-They can also drop incoming messages.
-For now that's it.
+We'll make some restrictions on the adversary power to make our discussion more effective.
+The bad guys can drop outgoing messages basically just by not sending them.
+They can also drop incoming messages by pretending that they haven't received them.
+For now that's it; we'll worry about issues related to privacy or authentication later.
 
 So now I've defined the problem we want to solve,
 I present our solution which we call routing.
 As you might tell from the name,
 this algorithm is inspired from computer networks.
+
 Here's how it goes.
-We first create our packets by running an error correcting code on the input.
+We first create our packets by running an quantum error correcting code on the input.
+We're doing this because we cannot completely prevent packet losses from happening.
+By using error correction, as long as most of these do arrive at P2 we'll be fine.
+
 Our network is initialized as a complete graph like this.
 We now try to route these packets from P1 to P2.
 
@@ -137,26 +140,36 @@ we're able to get something like SWIA.
 
 Now it's time to build a real MPQC.
 
-# Building MPQC
+# Strategy
 
 Before we go at it,
 let's have a quick rundown on I guess the common strategy out there.
 
 There are usually three phases.
 In the first phase, everyone encodes their own input.
+There's no quantum communications here,
+but the parties might run some kind of classical MPC to decide on the encryption key.
 This encoding has a bunch of good properties.
-You can think of it as some kind of encryption and authentication.
+For now you can think of it as an authentication.
+
+Recall that under the quantum setting, authentication implies encryption, so this message is now encrypted too.
 
 Once that's done, we move on to the next phase.
 The parties will evaluate homomorphically over the encoded input.
-This phase usually involves passing messages around.
+This phase involves passing quantum messages around.
 
 Finally, once the evaluation is done, everyone can just decrypt their own output.
 
+# Strategy - Enc then ECC
+
 So let's see how routing fit into this picture.
-The first idea is to let everyone encode their inputs locally like normal.
-Then they can ECC the messages right before sending them.
-Like this.
+I guess the first idea is to see if we can kinda massage an existing MPQC scheme and get IA out of it.
+Maybe every time a message is sent, we send it using the routing subroutine from earlier.
+And we maybe keep the protocol the same otherwise.
+
+Kinda like this here.
+Everyone encode their inputs locally like normal.
+They can ECC the messages right before sending them.
 
 But it actually doesn't work.
 Like I mentioned earlier, this encoding is basically some kind of authentication.
@@ -164,10 +177,14 @@ It stops the bad guys from modifying the underlying message.
 But when we take its ECC, this protection doesn't work anymore on the individual codewords.
 So when we route this, the packets get tampered by the relays and we won't notice until it's too late.
 
-Let's try something else.
-Maybe we should try to take the ECC before encoding. Like this here.
+# Strategy - Homomorphic ECC
+
+Since that didn't work, let's try switching the ECC and Authentication.
+Like this here.
+
 Then maybe we try to homomorphically evaluate over these ECC too.
-This strategy almost works, but unfortunately we have a concrete attack.
+
+Long story short, this strategy almost works, but unfortunately we have a concrete attack.
 
 See, this ECC might be prepared by malicious parties.
 So they can do something like this.
@@ -176,6 +193,8 @@ So this evaluation is done over some garbage input.
 And well, we know what they say.
 "Garbage in, garbage out".
 And now the outputs are garbage too.
+
+# Strategy - Ours
 
 So we need to do something about this attack.
 This is what we tried.
@@ -187,22 +206,16 @@ A caveat is that without the ECC, we can't send quantum messages.
 So all these evaluation would have to be done locally.
 And so our construction uses a homomorphic encryption scheme.
 
-This is the actual outline of our construction.
-Let's fill in the gaps now.
-
-# Construction
-
-Let's put everything together.
-First of all, we use homomorphic encryption, so we have a server.
-
-TODO and I didn't draw the rest yet.
-The idea is to "bend" and "embed" the picture from the last slide here.
-
-There's another caveat though.
-First, those who are familiar with homomorphic evaluation schemes might notice that we need an evaluation key.
-Moreover, the evaluation key is actually quantum, so we can't just prepare it by running a classical MPC protocol.
-There's some nontrivial things happening there that I encourage you to read the paper to find out.
-
 # Conclusion
 
-TODO follow-up questions?
+So we've constructed the first MPQC with SWIA.
+Whose round complexity doesn't depend on the circuit.
+
+Currently a single dishonest party can cause abort...
+
+Interesting open problem...
+
+Interesting consequence of our construction is that it's fair if the underlying cMPC is.
+
+TODO future works?
+

@@ -135,7 +135,7 @@ function nextSlide() {
 			$(".canvas-container").append(abortMessage);
 			break;
 		}
-		case 7: {
+		case 9: {
 			location.href = "swia.html";
 			break;
 		}
