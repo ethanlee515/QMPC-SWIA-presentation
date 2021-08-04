@@ -166,18 +166,20 @@ Finally, once the evaluation is done, everyone can just decrypt their own output
 # Strategy - Enc then ECC
 
 So let's see how routing fit into this picture.
-Of course the first idea is to see if we can kinda massage an existing MPQC scheme and get IA out of it.
+The first question to ask, of course, is the following.
+Can we incorporate routing into existing MPQCs and get IA?
+
 For example, maybe every time there's a quantum message,
 we send it using the routing subroutine from earlier.
 And we try to touch the rest of the protocol as little as possible.
 
 Kinda like this here.
 Everyone encode their inputs locally like normal.
-They can then run error-correcting code the messages right before routing them out.
+They can then run error-correcting code on every message and use routing to send them.
 
-Well, unfortunately, it actually doesn't work.
-Recall this encoding is some kind of authentication.
-It stops the bad guys from modifying the underlying message.
+Well, unfortunately, this actually doesn't work.
+Recall this encoding is an authentication.
+It stops the bad guys from tampering with the message.
 But when we take its ECC, this protection doesn't work anymore on the individual packets.
 So when we route this, the packets get tampered by the relays and we won't notice until it's too late.
 
