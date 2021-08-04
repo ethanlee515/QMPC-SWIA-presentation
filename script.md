@@ -185,16 +185,24 @@ So when we route this, the packets get tampered by the relays and we won't notic
 
 # Strategy - Homomorphic ECC
 
-Since that didn't work, let's switch the order of the QECC and Authentication.
+From the previous attack, we see that each of the packets need to be protected separately.
+So let's do QECC first, then encrypt the individual packets.
 Like this here.
 
+Now we have QECC,
 Then maybe we try to homomorphically evaluate over these QECC too.
+The rest of the picture is the same as before.
+Each party gets their output packets.
+They decrypt them, then decode the ECC to get their outputs.
 
-Long story short, this strategy almost works, but unfortunately we have a concrete attack.
+So this seems promising.
+But unfortunately, I have some bad news.
+This construction actually doesn't work as well as it might sound.
+We actually have a concrete attack.
 
 See, this ECC might be prepared by malicious parties.
 So they can do something like this.
-These are some garbage that's not a real ECC codeword.
+These are some garbage that's not a real QECC codeword.
 So this evaluation is done over some garbage input.
 And well, we know what they say.
 "Garbage in, garbage out".
@@ -202,15 +210,34 @@ And now the outputs are garbage too.
 
 # Strategy - Ours
 
-So we need to do something about this attack.
-This is what we tried.
+So we need to fix that attack.
+This is what we did.
 We first decode the ECC, then we evaluate.
 So if this is garbage here, it'll get properly handled here.
+
 It turns out that this strategy is actually correct.
 
-A caveat is that without the ECC, we can't send quantum messages.
+A caveat is that without the ECC, we can't send quantum messages during the evaluation.
 So all these evaluation would have to be done locally.
-And so our construction uses a homomorphic encryption scheme.
+And so our construction uses a homomorphic encryption scheme to take care of that.
+
+So to sum things up and fill in the gap, here's how our protocol actually goes.
+
+Everyone first encodes their inputs with QECC and QAS,
+then the encrypted inputs all get routed to the server.
+The server decodes the QECC homomorphically, so now the input is protected by only QAS.
+
+The server then actually does the computation.
+Here I'll pause and remark that this picture is symmetrical.
+The next four steps are actually just these four steps done in reverse order.
+
+Ok so the QECC is applied again,
+then the packets here get routed back to everyone.
+Then everyone decrypts and get their output.
+
+Or at least that's the high level summary.
+There are quite a few nontrivial issues that I'm brushing under the rug here.
+I encourage you to read our paper for a more complete treatment.
 
 # Conclusion
 
