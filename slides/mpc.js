@@ -102,7 +102,7 @@ function nextSlide() {
 			}
 			break;
 		}
-		case 4: {
+		case 5: {
 			let container = $(".canvas-container");
 			let canvasWidth = container.width();
 			let canvasHeight = container.height();
@@ -135,7 +135,7 @@ function nextSlide() {
 			$(".canvas-container").append(abortMessage);
 			break;
 		}
-		case 9: {
+		case 12: {
 			location.href = "swia.html";
 			break;
 		}
