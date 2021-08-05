@@ -111,15 +111,11 @@ function nextSlide() {
 			break;
 		}
 		case 3: {
-			drawParty(container, 1, false);
+			drawParty(container, 1, true);
 			drawParty(container, 2, true);
 			break;
 		}
-		case 4: {
-			drawParty(container, 1, true);
-			break;
-		}
-		case 6: {
+		case 5: {
 			location.href = "main-theorem.html";
 			break;
 		}
