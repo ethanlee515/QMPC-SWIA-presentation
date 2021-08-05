@@ -118,8 +118,10 @@ And now we've found out that this edge is unreliable.
 We get rid of it.
 
 We next try a different path. Maybe this green one.
-For this demo, let's say a packet gets dropped here this time.
-That'll break this edge, but not this other one.
+I want you guys to notice that a packet will never get dropped here,
+since both P1 and P3 are honest.
+So for this demo, let's say a packet gets dropped here this time.
+That'll break this edge.
 Generally, we erase the edge where the packet drop occurs.
 
 We then find another path, and this process just kinda repeats itself.
