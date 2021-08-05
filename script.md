@@ -12,7 +12,7 @@ So each party starts with their own private input, and they run some protocol.
 Exchange some messages that can be classical or quantum.
 At the end of the computation, everybody gets their output.
 
-A security notion that we have right now is called security with about.
+A security notion that we have right now is called security with abort.
 Intuitively speaking, everyone learns only their own output.
 On abort, honest parties don't get outputs.
 
