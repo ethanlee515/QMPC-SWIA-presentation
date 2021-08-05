@@ -111,11 +111,15 @@ function nextSlide() {
 			break;
 		}
 		case 3: {
-			drawParty(container, 1, true);
+			drawParty(container, 1, false);
 			drawParty(container, 2, true);
 			break;
 		}
-		case 5: {
+		case 4: {
+			drawParty(container, 1, true);
+			break;
+		}
+		case 6: {
 			location.href = "main-theorem-redo.html";
 			break;
 		}
