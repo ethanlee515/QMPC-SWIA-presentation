@@ -1,24 +1,29 @@
 # Intro
 
 Hello everyone! My name is Yi Lee, and today we'll be talking about round efficient secure multiparty quantum computation with identifiable abort.
-This is a joint work with Bar, Hao, Kai-Min, Mi-Ying, and Yu-Ching.
+This is a joint work with my research advisor Kai-Min, and with my friends and colleagues Bar, Hao, Mi-Ying, and Yu-Ching.
 
 # MPC
 
-Let's start with multiparty quantum computations. Or what we call MPQC.
-Here we have n parties, and our goal is to evaluate a function.
+Let's start with multiparty quantum computations.
+Here we have n parties, and our goal is to jointly evaluate some quantum function.
 It's got n quantum inputs; one from each party. Same idea with n outputs.
 So each party starts with their own private input, and they run some protocol.
-Exchange some quantum messages.
-And when they're done, everybody gets their output.
+Exchange some messages that can be classical or quantum.
+At the end of the computation, everybody gets their output.
 
-We say an MPC is secure if everyone learns only their own output.
+A security notion that we have right now is called security with about.
+Intuitively speaking, everyone learns only their own output.
+On abort, honest parties don't get outputs.
+
 This security notion is ok, but it's really not the best.
-It allows what we call a "denial of service" attack,
-which basically means the protocol might abort.
+The adversary gets to abort the protocol if it wants to.
+When that happens, we also call it a "denial of service" attack.
 It's well known that this kind of situation cannot be prevented with dishonest majority.
-And then nobody gets any output.
-When this attack happens, all quantum inputs are consumed and lost to the no-cloning theorem.  
+Also, for the quantum setting,
+not only does nobody gets any output,
+but all quantum inputs are consumed and lost to the no-cloning theorem.
+So the parties might not be able to even re-run the protocol.
 
 So we wanna ask: Is there anything we can do about this?
 
@@ -29,17 +34,18 @@ There's this stronger security notion called "identifiable abort".
 It means that when things go wrong, everyone at least knows whose to blame.
 
 This idea was introduced in 2014 by this work.
-We can achieve this IA notion by making some changes to GMW.
+The security notion is actually satisfied by the GMW protocol.
 The key idea is to use broadcast and ZK proofs,
 so the honest parties can prove that they did what they're supposed to.
 
 But we can't broadcast a quantum state, so that strategy doesn't work for quantum.
-So we know some MPQC protocols, but they are pretty far from achieving IA.
+So we know some MPQC protocols, but they are pretty far from achieving identifiable abort.
 
 # Challenge
 
-Turns out that it's hard to get IA under the quantum setting.
-In fact, there are issues with just sending protocol messages.
+Turns out that it's hard to get identifiable abort under the quantum setting.
+In fact, there are issues even with just sending protocol messages.
+Let me show you real quick.
 
 Here P1 is supposed to send a quantum message to P2.
 Let's say P1 is malicious, and so it refuses to send it.
@@ -48,30 +54,31 @@ The no-cloning theorem says that's it's the only copy we have.
 So now there's no way to recover, and the protocol aborts.
 Now we need someone to blame.
 
-Of course it could be P1, but this other configuration is also consistent.
-P2 could be malicious.
-He can take the message and claims that he's never received it.
+From the perspective of P3, maybe he could blame P1,
+but this other configuration is also consistent.
+P2 could be malicious while P1 may be honest.
+P2 can then take the message and claims that he's never received it.
 
-A bystander like P3 would not know which of P1 and P2 is malicious.
-So there's just not enough information to catch the cheater.
+So a bystander like P3 would not know which of P1 and P2 is malicious.
+There's just not enough information to catch the cheater.
 
 So under the quantum setting, we can't even send protocol messages without running into these issues.
 A priori it almost seems like there's some fundamental issues with achieving IA under the quantum setting.
-It turned out that we were able to overcome this issue and some other challenges that I'll also mention.
+It turned out that we were able to overcome this issue and build a multiparty quantum computation protocol that satisfies identifiable abort.
 
 # Main theorem
 
-Here's our informal theorem statement.
+So here's our informal theorem statement.
 
 (Read off the slide)
 
 It's also worth mentioning that our protocol is round-efficient.
-What we mean is that our round complexity doesn't depend on this circuit.
+What we mean is that the number of quantum messages we send doesn't depend on this circuit.
 
 But we don't have constant round.
 Our round complexity does depend on the number of parties and the security parameter.
-Unlike this concurrent work who's also an accepted paper here are CRYPTO 2021.
-They built a constant-round MPQC but it doesn't have identifiable abort.
+Unlike this concurrent work which is also presenting here at this conference.
+This work is a constant-round MPQC but it doesn't have identifiable abort.
 
 # Qubit-Sending
 
