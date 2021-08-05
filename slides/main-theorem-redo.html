@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>MPQC SWIA Presentation</title>
+		<link rel="stylesheet" href="./q-pres.css">
+		<script>
+			function mathjax_ready_override() {
+				main();
+				return MathJax.startup.defaultPageReady();
+			}
+			MathJax = {
+				tex: {
+					inlineMath: [['$', '$'], ['\\(', '\\)']]
+				},
+				svg: {
+					fontCache: 'global'
+				},
+				startup: {
+					pageReady: mathjax_ready_override
+				}
+			};
+		</script>
+		<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<script src="./q-pres.js"></script>
+		<script src="main-theorem-redo.js"></script>
+	</head>
+	<body>
+		<section class="slide-title">Our Contribution</section>
+
+		
+		<section class="slide-item">
+			There exists a protocol for computing any multiparty <i>quantum</i> circuit with identifiable abort.
+		</section>
+
+		<section class="slide-content slide-item" data-visible-from="1">
+			Using:
+		</section>
+		<section class="slide-content slide-sub-item" data-visible-from="2">
+			<i>Classical</i> multiparty computation with identifiable abort.
+		</section>
+		<section class="slide-content slide-sub-item" data-visible-from="3">
+			Verifiable quantum FHE scheme.
+		</section>
+
+		<section class="slide-content slide-item" data-visible-from="4">
+			Round-efficient
+		</section>
+		<section class="slide-content slide-sub-item" data-visible-from="5">
+			Number of quantum messages does not depend on the circuit.
+		</section>
+		<section class="slide-content slide-sub-item" data-visible-from="6">
+			<i>Not</i> constant round.
+		</section>
+		<section class="slide-content slide-sub-item" data-visible-from="7">
+			Concurrent work [BCKM21]: Constant round, but no identifiable abort.
+		</section>
+
+		<section class="slide-content slide-item" data-visible-from="8">
+			Fair if the underlying classical MPC is fair.
+		</section>
+	</body>
+</html>
