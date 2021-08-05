@@ -93,24 +93,7 @@ function nextSlide() {
 			ctx.textBaseline = "top";
 			ctx.font = "30px sans-serif";
 			ctx.fillStyle = "#55F";
-			ctx.fillText("Homomorphic Encryption", x_eval - 300, 0);
-			break;
-		}
-		case 4: {
-			/*
-			let canvas = $("#our-strategy");
-			let ctx = canvas[0].getContext("2d");
-
-			let [pktX, pktY] = getPacketRads();
-			let y3 = 140;
-			let rectBot = y3 + pktY + 5;
-
-			ctx.textAlign = "center";
-			ctx.textBaseline = "alphabetic";
-			ctx.font = "30px sans-serif";
-			ctx.fillStyle = "#A70";
-			ctx.fillText("Routed to server", x_commit, rectBot + 30);
-			*/
+			ctx.fillText("Local Homomorphic Evaluation", x_eval - 300, 0);
 			break;
 		}
 		case 5: {

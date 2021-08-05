@@ -36,7 +36,6 @@ Call this 2nd idea/approach
 
 # Ours
 
-"Locally" homomorphic evaluation
 Remind the audience that these are encrypted
 Define the server
 Maybe don't go into the symmetry... A bit too much cheating. Or maybe just say more or less the same in reverse...?
