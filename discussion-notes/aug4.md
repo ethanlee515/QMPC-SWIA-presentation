@@ -1,12 +1,4 @@
-MPQC?
-Say we're interested in MPQC
 quantum inputs, quantum circuits over joint inputs
-
-Just "evaluate some function". Or maybe circuit?
-
-Messages = both classical and quantum
-
-instead of "when they're done", do "at the end of the computation"
 
 "At the intuitive level" for security
 
@@ -25,7 +17,6 @@ Led to/motivate defining SWIA.
 
 Don't abbreviate IA
 
-
 # Theorem
 
 * First say conclusion
@@ -38,10 +29,6 @@ Don't abbreviate IA
 * Say explicitly "either enough packets are sent to P2 or the graph becomes disconnected" as in one of the two happen
 * "Graph is disconnected
 * General adversary behavior = requires authentication code
-
-# Enc-then-ECC
-
-"No-go: QECC destroys authentication." Need to say a lot more here.
 
 # Hom-ECC
 
