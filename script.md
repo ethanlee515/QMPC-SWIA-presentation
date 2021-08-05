@@ -14,7 +14,7 @@ At the end of the computation, everybody gets their output.
 
 A security notion that we have right now is called security with abort.
 Intuitively speaking, everyone learns only their own output.
-On abort, honest parties don't get outputs.
+Or the protocol aborts, and nobody gets any output.
 
 This security notion is ok, but it's really not the best.
 The adversary gets to abort the protocol if it wants to.
