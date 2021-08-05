@@ -35,8 +35,6 @@ Don't abbreviate IA
 
 # Qubit sending
 
-* "Network = parties" seems odd
-* Say explicitly "let us assume P2 and P4 are malicious"
 * Say explicitly "either enough packets are sent to P2 or the graph becomes disconnected" as in one of the two happen
 * "Graph is disconnected
 * General adversary behavior = requires authentication code

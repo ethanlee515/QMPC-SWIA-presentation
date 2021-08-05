@@ -90,6 +90,9 @@ I present our solution which we call routing.
 As you might tell from the name,
 this algorithm is inspired from computer networks.
 
+For the purpose of this illustration,
+let's say P2 and P4 are the bad guys.
+
 Here's how it goes.
 We first create our packets by running an quantum error correcting code on the input.
 We're doing this because we cannot completely prevent packet losses from happening.
