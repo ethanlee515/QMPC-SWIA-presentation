@@ -251,14 +251,9 @@ I encourage you to read our paper for a more complete treatment.
 # Conclusion
 
 So we've constructed the first MPQC with SWIA.
-Whose round complexity doesn't depend on the circuit.
 
-Currently a single dishonest party can cause abort...
+In terms of future work, there's a concrete improvement we could've made to our construction.
+Right now it takes only one dishonest party to abort the protocol.
+For example, the server can just take everyone's encrypted inputs and you know, go home with them.
 
-Interesting open problem...
-
-Interesting consequence of our construction is that it's fair if the underlying cMPC is.
-
-TODO future works?
-
-
+It might be interesting to come up with a different construction that can deal with more dishonest parties before aborting.
