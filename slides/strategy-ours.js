@@ -89,6 +89,12 @@ function nextSlide() {
 			ctx.strokeStyle = "#55F";
 			ctx.strokeRect(x_commit - 20, rectTop, width, height);
 
+			break;
+		}
+		case 2: {
+			let canvas = $("#our-strategy");
+			let ctx = canvas[0].getContext("2d");
+
 			ctx.textAlign = "left";
 			ctx.textBaseline = "top";
 			ctx.font = "30px sans-serif";
@@ -96,7 +102,7 @@ function nextSlide() {
 			ctx.fillText("Local Homomorphic Evaluation", x_eval - 300, 0);
 			break;
 		}
-		case 5: {
+		case 4: {
 			location.href = "summary.html";
 			break;
 		}
