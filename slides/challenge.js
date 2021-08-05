@@ -100,26 +100,26 @@ function nextSlide() {
 			illustrateMessage(canvasWidth, canvasHeight);
 			break;
 		}
-		case 1: {
+		case 2: {
 			$('.canvas-container').remove();
 			container = illustrateLostMessage(canvasWidth, canvasHeight);
 			break;
 		}
-		case 2: {
+		case 3: {
 			let abortMessage = makeAbortMessage("Who is malicious...?");
 			$('.canvas-container').append(abortMessage);
 			break;
 		}
-		case 3: {
+		case 4: {
 			drawParty(container, 1, false);
 			drawParty(container, 2, true);
 			break;
 		}
-		case 4: {
+		case 5: {
 			drawParty(container, 1, true);
 			break;
 		}
-		case 6: {
+		case 7: {
 			location.href = "main-theorem-redo.html";
 			break;
 		}

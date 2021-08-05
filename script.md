@@ -14,23 +14,24 @@ At the end of the computation, everybody gets their output.
 
 A security notion that we have right now is called security with abort.
 Intuitively speaking, everyone learns only their own output.
-Or the protocol aborts, and nobody gets any output.
+Or the protocol aborts, in that case nobody gets any output.
 
-This security notion is ok, but it's really not the best.
-The adversary gets to abort the protocol if it wants to.
+So we have this in these previous works.
+
+What we have so far is good, but there are rooms for improvement.
+Right now the adversary gets to abort the protocol when it wants to.
 When that happens, we also call it a "denial of service" attack.
 It's well known that this kind of situation cannot be prevented with dishonest majority.
-Also, for the quantum setting,
-not only does nobody gets any output,
-but all quantum inputs are consumed and lost to the no-cloning theorem.
-So the parties might not be able to even re-run the protocol.
+And when it does happen, nobody gets any outputs.
+Also, all quantum inputs are consumed and lost to the no-cloning theorem.
+So the parties might not even be able to re-try the protocol.
 
 So we wanna ask: Is there anything we can do about this?
 
 # SWIA
 
 It turns out that the answer is yes.
-There's this stronger security notion called "identifiable abort".
+There's this other security notion called "identifiable abort".
 It means that when things go wrong, everyone at least knows whose to blame.
 
 This idea was introduced in 2014 by this work.
@@ -45,7 +46,7 @@ So we know some MPQC protocols, but they are pretty far from achieving identifia
 
 Turns out that it's hard to get identifiable abort under the quantum setting.
 In fact, there are issues even with just sending protocol messages.
-Let me show you real quick.
+Let me show you.
 
 Here P1 is supposed to send a quantum message to P2.
 Let's say P1 is malicious, and so it refuses to send it.
@@ -80,6 +81,10 @@ Our round complexity does depend on the number of parties and the security param
 Unlike this concurrent work which is also presenting here at this conference.
 This work is a constant-round MPQC but it doesn't have identifiable abort.
 
+Moreover, our construction is fair if the underlying classical MPC is fair.
+When I say fair, I mean that either everyone gets their output or nobody does.
+In other words, the malicious parties won't be able to get their outputs first and then abort the protocol so the honest parties get nothing.
+
 # Qubit-Sending
 
 Ok, so let's talk about how did we do this.
@@ -87,9 +92,12 @@ Our first step is to solve the issue with sending quantum messages that I mentio
 
 Let's first fully define the problem.
 So P1 wants to send a qubit to P2.
-We'll make some restrictions on the adversary power to make our discussion more effective.
+To make our discussion more effective,
+we'll make some restrictions on the adversaries.
 The bad guys can drop outgoing messages basically just by not sending them.
-They can also drop incoming messages by pretending that they haven't received them.
+They can also claim someone of not sending a message.
+Like this P2 here.
+It can take the message from P1, and then falsely accuse him of not sending anything.
 For now that's it; we'll worry about issues related to privacy or authentication later.
 
 So now I've defined the problem we want to solve,
@@ -102,8 +110,8 @@ let's say P2 and P4 are the bad guys.
 
 Here's how it goes.
 We first create our packets by running an quantum error correcting code on the input.
-We're doing this because we cannot completely prevent packet losses from happening.
-By using error correction, as long as most of these do arrive at P2 we'll be fine.
+We're doing this because we cannot completely prevent packet losses from happening, as we discussed earlier.
+So by using error correction, as long as most of these do arrive at P2 we'll be fine.
 
 Our network is initialized as a complete graph like this.
 We now try to route these packets from P1 to P2.
@@ -125,26 +133,31 @@ That'll break this edge.
 Generally, we erase the edge where the packet drop occurs.
 
 We then find another path, and this process just kinda repeats itself.
+We keep on going until either P1 has no more packets left or if there's no more paths available.
 
 Now let's assume the algorithm eventually terminates successfully.
 Meaning that P1 has no packets left.
 Everything is either sent to P2 or dropped.
+For example these three are the ones that arrived, and this one was lost somewhere.
 Obviously the number of packet losses is bounded by the number of edges in the graph.
 Since we have this upper bound, the ECC can always be decoded.
 
 So I guess I've shown some sort of correctness property.
-Let's next try to make the protocol abort instead.
+Let's next try to make the protocol abort instead and see if we get identifiable abort.
 
 So let's say this path gets broken again. We get rid of this.
 Then same thing again.
 
 Now there's no paths from P1 to P2, so the protocol aborts.
 Time to find the bad guys.
+I claim that it is always possible; let me explain why.
 
-So we first notice that the edges never break between any pair of honest parties.
+First notice that when the protocol aborts, the graph is disconnected.
+That's becasue there's no paths from P1 to P2.
+The other important observation is that the edges never break between any pair of honest parties.
 In terms of the graph, it means that they stay on the same connected component.
-So when the graph becomes disconnected, which is clearly true when the protocol aborts,
-the honest parties can just blame everyone on different connected components.
+This and this together gives us identifiable abort,
+since the honest parties can just blame everyone on different connected components.
 
 To sum things up, for this subproblem, and with this restricted adversary model,
 we're able to get something like SWIA.
