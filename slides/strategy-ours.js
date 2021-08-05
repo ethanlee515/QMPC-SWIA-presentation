@@ -82,12 +82,12 @@ function nextSlide() {
 			let y1 = 60;
 			let y3 = 140;
 
-			let width = (x_eval + 20) - (x_commit - 20);
+			let width = (x_eval - 20) - (x_commit + 15);
 			let rectTop = y1 - pktY - 5;
 			let rectBot = y3 + pktY + 5;
 			let height = rectBot - rectTop;
 			ctx.strokeStyle = "#55F";
-			ctx.strokeRect(x_commit - 20, rectTop, width, height);
+			ctx.strokeRect(x_commit + 15, rectTop, width, height);
 
 			break;
 		}
@@ -102,7 +102,7 @@ function nextSlide() {
 			ctx.fillText("Local Homomorphic Evaluation", x_eval - 300, 0);
 			break;
 		}
-		case 4: {
+		case 5: {
 			location.href = "summary.html";
 			break;
 		}
