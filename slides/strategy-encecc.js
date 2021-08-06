@@ -40,7 +40,7 @@ function nextSlide() {
 			drawQECC();
 			break;
 		}
-		case 3: {
+		case 4: {
 			let canvas = $("#enc-then-qecc");
 			let y1 = 20;
 			let y2 = 60;
@@ -53,7 +53,7 @@ function nextSlide() {
 
 			break;
 		}
-		case 5: {
+		case 6: {
 			location.href = "strategy-homecc.html";
 			break;
 		}
