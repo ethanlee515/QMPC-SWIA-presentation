@@ -6,7 +6,7 @@ This is a joint work with my research advisor Kai-Min, and with my friends and c
 # MPC
 
 Let's start with multiparty quantum computations.
-Here we have n parties, and our goal is to jointly evaluate some quantum function.
+Here we have n parties, and our goal is to jointly evaluate some quantum circuit.
 It's got n quantum inputs; one from each party. Same idea with n outputs.
 So each party starts with their own private input, and they run some protocol.
 Exchange some messages that can be classical or quantum.
@@ -16,7 +16,8 @@ A security notion that we have right now is called security with abort.
 Intuitively speaking, everyone learns only their own output.
 Or the protocol aborts, in that case nobody gets any output.
 
-So we have this in these previous works.
+So we have this in this work by Dupuis, Nielsen, and Salvail.
+We also have it in this other work by Dulek, Grilo, Jeffery, Majenz, and Schaffner.
 
 What we have so far is good, but there are rooms for improvement.
 Right now the adversary gets to abort the protocol when it wants to.
@@ -34,8 +35,9 @@ It turns out that the answer is yes.
 There's this other security notion called "identifiable abort".
 It means that when things go wrong, everyone at least knows whose to blame.
 
-This idea was introduced in 2014 by this work.
+This idea was introduced in 2014 by Ishai, Ostrovsky, and Zikas.
 The security notion is actually satisfied by the GMW protocol.
+That's Goldreich, Micali, and Wigderson.
 The key idea is to use broadcast and ZK proofs,
 so the honest parties can prove that they did what they're supposed to.
 
@@ -72,6 +74,7 @@ It turned out that we were able to overcome this issue and build a multiparty qu
 So here's our informal theorem statement.
 
 (Read off the slide)
+(VQFHE is by Alagic et el.)
 
 It's also worth mentioning that our protocol is round-efficient.
 What we mean is that the number of quantum messages we send doesn't depend on this circuit.
@@ -79,7 +82,7 @@ What we mean is that the number of quantum messages we send doesn't depend on th
 But we don't have constant round.
 Our round complexity does depend on the number of parties and the security parameter.
 Unlike this concurrent work which is also presenting here at this conference.
-This work is a constant-round MPQC but it doesn't have identifiable abort.
+This work by Bartusek, Coladangelo, Khurana, and Ma is a constant-round MPQC but it doesn't have identifiable abort.
 
 Moreover, our construction is fair if the underlying classical MPC is fair.
 When I say fair, I mean that either everyone gets their output or nobody does.
@@ -112,6 +115,8 @@ Here's how it goes.
 We first create our packets by running an quantum error correcting code on the input.
 We're doing this because we cannot completely prevent packet losses from happening, as we discussed earlier.
 So by using error correction, as long as most of these do arrive at P2 we'll be fine.
+As in, P2 will be able to decode the packets back to the original message,
+as long as we don't lose too many packets.
 
 Our network is initialized as a complete graph like this.
 We now try to route these packets from P1 to P2.
@@ -172,18 +177,18 @@ let's have a quick rundown on I guess the common strategy out there.
 As a really rough picture, there are kinda three phases.
 Encryption, evaluation, and decryption.
 
-In the first phase, everyone encrypts their own input.
-There's classical communications only.
-The parties might run a classical MPC to decide on their encryption key for example.
-But there's no quantum communications yet.
+In the first phase, everyone encrypts their own input using quantum authentication code.
+Here I say encrypt because under the quantum setting, authentication implies encryption.
+So now everyone's inputs are protected in the sense that they're encrypted and authenticated.
+In other words, these are now ciphertexts that are ready to be passed around.
+Which we'll be doing in the next phase.
+Right now in this phase there's no quantum communication yet.
+but the parties might jointly generate some classical keys for this authentication.
 
-Here everyone just encodes their inputs using QAS.
-Recall that under the quantum setting, authentication implies encryption,
-so this is also encrypted in the usual sense.
-
-Once that's done, we move on to the next phase.
+So that's about it for encryption.
+Now we move on to the next phase.
 The parties will evaluate homomorphically over the encoded input.
-This phase would involve passing quantum messages around.
+This phase involves passing quantum messages around.
 
 Finally, once the evaluation is done, everyone can just decrypt their own output.
 
@@ -232,12 +237,18 @@ And well, we know what they say.
 "Garbage in, garbage out".
 And now the outputs are garbage too.
 
+As in, everyone could decode their output.
+Then we look at the joint output,
+and it might not correspond to any valid input.
+So this obviously breaks the correctness of this multiparty computation.
+
 # Strategy - Ours
 
 So we need to fix that attack.
 This is what we did.
 We first decode the ECC, then we evaluate.
-So if this is garbage here, it'll get properly handled here.
+So even if this starts out being an invalid codeword,
+we can handle it here before we go into evaluation.
 
 It turns out that this strategy is actually correct.
 

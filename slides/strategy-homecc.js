@@ -98,7 +98,7 @@ function nextSlide() {
 
 			break;
 		}
-		case 5: {
+		case 6: {
 			location.href = "strategy-ours.html";
 			break;
 		}

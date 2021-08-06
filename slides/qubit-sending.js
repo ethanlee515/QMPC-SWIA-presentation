@@ -424,7 +424,7 @@ function nextSlide() {
 			MathJax.typeset();
 			break;
 		}
-		case 23: {
+		case 24: {
 			location.href = "strategy-typical.html";
 			break;
 		}
