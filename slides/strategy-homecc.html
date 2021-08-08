@@ -10,6 +10,7 @@
 				return MathJax.startup.defaultPageReady();
 			}
 			MathJax = {
+				loader: {load: ['[tex]/color']},
 				tex: {
 					inlineMath: [['$', '$'], ['\\(', '\\)']]
 				},
@@ -57,7 +58,14 @@
 			Garbage in, garbage out.
 		</section>
 
-		<section class="slide-content slide-sub-item" data-visible-from="5">
+		<section class="canvas-holder">
+			<div id="hom-ecc-container" style="position: relative;">
+				<canvas width="1600" height="200" id="hom-ecc">
+				</canvas>
+			</div>
+		</section>
+
+		<section class="slide-content slide-sub-item" data-visible-from="7">
 			Inconsistent output breaks <i>correctness</i>.
 		</section>
 	</body>
