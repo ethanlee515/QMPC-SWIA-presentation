@@ -120,7 +120,7 @@ function nextSlide() {
 			break;
 		}
 		case 7: {
-			location.href = "main-theorem-redo.html";
+			location.href = "qubit-sending.html";
 			break;
 		}
 	}

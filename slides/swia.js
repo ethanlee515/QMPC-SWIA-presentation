@@ -106,7 +106,7 @@ function nextSlide() {
 			break;
 		}
 		case 6: {
-			location.href = "challenge.html";
+			location.href = "main-theorem-redo.html";
 			break;
 		}
 	}
