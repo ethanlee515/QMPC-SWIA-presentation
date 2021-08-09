@@ -92,13 +92,13 @@ function drawHomECC() {
 	ctx.lineTo(cnot2, y3 + gateRad);
 	ctx.stroke();
 
-	for(let ctrl of [[cnot1, y1], [cnot2, y2]]) {
+	for(let ctrl of [[cnot1, y3], [cnot2, y3]]) {
 		ctx.beginPath();
 		ctx.arc(ctrl[0], ctrl[1], gateRad, 0, 2 * Math.PI);
 		ctx.stroke();
 	}
 
-	for(let tgt of [[cnot1, y3], [cnot2, y3]]) {
+	for(let tgt of [[cnot1, y1], [cnot2, y2]]) {
 		ctx.beginPath();
 		ctx.arc(tgt[0], tgt[1], gateRad, 0, 2 * Math.PI);
 		ctx.fill();
