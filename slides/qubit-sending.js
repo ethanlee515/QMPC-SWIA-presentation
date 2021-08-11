@@ -329,7 +329,7 @@ function nextSlide() {
 			break;
 		}
 		/* Success? */
-		case 13: {
+		case 15: {
 			let canvas = container.find("canvas");
 			//Remove packets
 			removeSenderECC(canvas);
@@ -338,32 +338,32 @@ function nextSlide() {
 			break;
 		}
 		/* Back to path 3 */
-		case 15: {
+		case 17: {
 			let canvas = container.find("canvas");
 			removeReceivedECC(canvas);
 			drawX(canvas, 3, 2);
 			break;
 		}
-		case 16: {
+		case 18: {
 			let canvas = container.find("canvas");
 			eraseLineBetweenParties(canvas, 1, 4);
 			drawLineBetweenParties(4, 2, canvas, false, "#000");
 			break;
 		}
 		/* Path 4 */
-		case 17: {
+		case 19: {
 			let canvas = container.find("canvas");
 			drawLineBetweenParties(1, 3, canvas, false, "#0C0");
 			drawLineBetweenParties(3, 4, canvas, false, "#0C0");
 			drawLineBetweenParties(4, 2, canvas, false, "#0C0");
 			break;
 		}
-		case 18: {
+		case 20: {
 			let canvas = container.find("canvas");
 			drawX(canvas, 3, 4);
 			break;
 		}
-		case 19: {
+		case 21: {
 			let canvas = container.find("canvas");
 			eraseLineBetweenParties(canvas, 3, 4);
 			drawLineBetweenParties(1, 3, canvas, false, "#000");
@@ -371,7 +371,7 @@ function nextSlide() {
 			break;
 		}
 		/* SWIA */
-		case 20: {
+		case 22: {
 			let canvas = container.find("canvas");
 			let canvasWidth = canvas.width();
 			let canvasHeight = canvas.height();
@@ -424,7 +424,7 @@ function nextSlide() {
 			MathJax.typeset();
 			break;
 		}
-		case 25: {
+		case 27: {
 			location.href = "strategy-typical.html";
 			break;
 		}
