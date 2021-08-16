@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>MPQC SWIA Presentation</title>
+		<link rel="stylesheet" href="./q-pres.css">
+		<script>
+			function mathjax_ready_override() {
+				main();
+				return MathJax.startup.defaultPageReady();
+			}
+			MathJax = {
+				tex: {
+					inlineMath: [['$', '$'], ['\\(', '\\)']]
+				},
+				svg: {
+					fontCache: 'global'
+				},
+				startup: {
+					pageReady: mathjax_ready_override
+				}
+			};
+		</script>
+		<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<script src="./q-pres.js"></script>
+		<script src="./mpc.js"></script>
+	</head>
+	<body>
+		<section class="slide-title">Multiparty Quantum Computations</section>
+
+		<section class="slide-item"><b>Goal:</b>
+		Compute $C(|x_1\rangle, \ldots, |x_n\rangle)
+			=(|y_1\rangle, \ldots, |y_n\rangle)$.
+		</section>
+
+		<section class="slide-content slide-item" data-visible-from="3">
+			<b>Security with Abort:</b> (dishonest majority)
+		</section>
+
+		<section class="slide-content slide-sub-item" data-visible-from="4">
+			$P_i$ learns only $y_i$.
+		</section>
+
+		<section class="slide-content slide-sub-item" data-visible-from="5">
+			Protocol may abort.
+		</section>
+
+		<section class="slide-content slide-item" data-visible-from="6">
+			Achieved by [DNS12, DGJ+20].
+		</section>
+
+		<hr class="slide-content" data-visible-from="7">
+
+		<section class="slide-content slide-item" data-visible-from="7">
+			<i>Denial of Service</i> attack:
+		</section>
+
+		<section class="slide-content slide-sub-item" data-visible-from="7">
+			Adversary aborts the protocol.
+		</section>
+
+		<section class="slide-content slide-sub-item" data-visible-from="8">
+			Cannot be prevented with dishonest majority.
+		</section>
+
+		<section class="slide-content slide-sub-item" data-visible-from="9">
+			Honest parties get no output.
+		</section>
+
+		<section class="slide-content slide-sub-item" data-visible-from="10">
+			Quantum inputs are consumed and lost.
+		</section>
+	</body>
+</html>
