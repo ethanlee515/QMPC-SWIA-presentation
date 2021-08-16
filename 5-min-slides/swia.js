@@ -13,8 +13,6 @@ function makeCanvasWithParties(width, height) {
 function illustrateLostMessage(width, height) {
 	let container = makeCanvasWithParties(width, height);
 	//Redraw party 1 and 2 as malicious
-	drawParty(container, 1, true);
-	drawParty(container, 2, true);
 
 	let canvas = container.find("canvas");
 	drawLineBetweenParties(2, 1, canvas, true);
@@ -39,9 +37,7 @@ function illustrateLostMessage(width, height) {
 
 function illustrateMessage(width, height) {
 	let container = makeCanvasWithParties(width, height);
-	//Redraw party 1 as malicious
 	drawParty(container, 1, true);
-
 	let canvas = container.find("canvas");
 	drawLineBetweenParties(1, 2, canvas, true);
 }
@@ -110,11 +106,21 @@ function nextSlide() {
 		case 6: {
 			$('.canvas-container').remove();
 			let container = illustrateLostMessage(canvasWidth, canvasHeight);
+			break;
+		}
+		case 7: {
 			let abortMessage = makeAbortMessage("Who is malicious...?");
+			let container = $('.canvas-container');
 			container.append(abortMessage);
 			break;
 		}
-		case 8: {
+		case 8 :{
+			let container = $('.canvas-container');
+			drawParty(container, 1, true);
+			drawParty(container, 2, true);
+			break;
+		}
+		case 10: {
 			location.href = "main-theorem-redo.html";
 			break;
 		}

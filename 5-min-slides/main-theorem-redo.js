@@ -1,5 +1,5 @@
 function nextSlide() {
 	if(currentSlide == 10) {
-		location.href = "summary.html";
+	//	location.href = "summary.html";
 	}
 }
